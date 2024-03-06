@@ -1,12 +1,11 @@
 import { Text, View } from "@/components/Themed";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
-import { TextInput, StyleSheet } from "react-native";
+import { TextInput, StyleSheet, Pressable } from "react-native";
 import Colors from "@/constants/Colors";
+import { router } from "expo-router";
 
 export default function One() {
-  const [text, onChangeText] = React.useState("Useless Text");
-
   return (
     <View style={styles.container}>
       <View style={styles.test}>
@@ -18,9 +17,25 @@ export default function One() {
             </View>
 
             <View style={styles.inputContainer}>
-              <Text style={styles.point}>Откуда</Text>
+              <Pressable
+                onPress={() =>
+                  router.push({
+                    pathname: "/modal",
+                  } as any)
+                }
+              >
+                {({ pressed }) => <Text style={styles.point}>Откуда</Text>}
+              </Pressable>
               <View style={styles.separator} />
-              <Text style={styles.point}>Куда</Text>
+              <Pressable
+                onPress={() =>
+                  router.push({
+                    pathname: "/modal",
+                  } as any)
+                }
+              >
+                {({ pressed }) => <Text style={styles.point}>Куда</Text>}
+              </Pressable>
             </View>
           </View>
         </View>
