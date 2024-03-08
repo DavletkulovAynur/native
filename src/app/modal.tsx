@@ -10,6 +10,7 @@ import {
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { FontAwesome } from "@expo/vector-icons";
+import { LocalityApi } from "./api";
 
 const windowWidth = Dimensions.get("window").width;
 const paddingValue = 20; // Adjust this based on your padding
@@ -29,15 +30,17 @@ const DATA = [
   },
 ];
 
-type ItemProps = { title: string };
+type ItemProps = { title: string; id: string };
 
-const Item = ({ title }: ItemProps) => (
+const Item = ({ title }: any) => (
   <View>
     <Text style={styles.title}>{title}</Text>
   </View>
 );
 
 export default function ModalScreen() {
+  const { data, isLoading } = LocalityApi.useGetLocalitiesQuery();
+
   return (
     <View style={styles.container}>
       <View style={styles.form}>
@@ -59,7 +62,7 @@ export default function ModalScreen() {
         </View>
       </View>
       <FlatList
-        data={DATA}
+        data={data as ItemProps[]}
         renderItem={({ item }) => <Item title={item.title} />}
         keyExtractor={(item) => item.id}
       />

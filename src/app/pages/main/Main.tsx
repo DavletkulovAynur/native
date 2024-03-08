@@ -1,19 +1,18 @@
 import { Text, View } from "@/components/Themed";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
-import {
-  StyleSheet,
-  Image,
-  ImageSourcePropType,
-} from "react-native";
+import { StyleSheet, Image, ImageSourcePropType } from "react-native";
 import logo from "@assets/images/logo.png";
 import LocationInput from "./LocationInput";
+import { MonoText } from "@/components/StyledText";
 
 export default function Main() {
   return (
     <View style={styles.container}>
       <View style={styles.test}>
-        <Text style={styles.title}>Cheap flight and airline tickets</Text>
+        <MonoText style={styles.title}>
+          Cheap flight and airline tickets
+        </MonoText>
         <View style={styles.parent}>
           <Image style={styles.logo} source={logo as ImageSourcePropType} />
           <LocationInput />
@@ -27,16 +26,16 @@ const styles = StyleSheet.create({
   container: {
     height: "100%",
   },
+
   logo: {
-    position: "relative",
-    top: -50,
-    width: 100,
-    height: 100,
+    marginTop: -40,
+    marginBottom: 10,
+    width: 80,
+    height: 80,
     resizeMode: "contain",
     borderWidth: 5,
     borderColor: "white",
     borderRadius: 20,
-    alignItems: "center",
   },
   test: {
     padding: 12,
@@ -48,39 +47,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     //FIXME:
     color: "#fff",
+    textAlign: "center",
   },
   parent: {
-    marginTop: 10,
-
     borderRadius: 20,
     padding: 12,
-    width: "100%",
+    // width: "100%",
     position: "relative",
     top: 40,
     backgroundColor: "#fff",
-  },
-  form: {
-    flexDirection: "row",
-    backgroundColor: "#eef1f4",
-    display: "flex",
-    alignItems: "center",
-    borderRadius: 20,
-    padding: 12,
-    overflow: "hidden",
-  },
-  inputContainer: {
-    marginLeft: 10,
-    width: "100%",
-  },
-  point: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#000",
-  },
-  separator: {
-    marginVertical: 15,
-    height: 1,
-    width: "100%",
-    backgroundColor: "#e1e5e9",
+    alignItems: "center", // Add this line
+    justifyContent: "center", // Add this line
   },
 });

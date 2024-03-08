@@ -39,41 +39,6 @@ const LocationInput = () => {
 export default LocationInput;
 
 const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-  },
-  logo: {
-    position: "relative",
-    top: -50,
-    width: 100,
-    height: 100,
-    resizeMode: "contain",
-    borderWidth: 5,
-    borderColor: "white",
-    borderRadius: 20,
-    alignItems: "center",
-  },
-  test: {
-    padding: 12,
-    backgroundColor: "#0db1b2",
-  },
-  title: {
-    marginTop: 60,
-    fontSize: 30,
-    fontWeight: "bold",
-    //FIXME:
-    color: "#fff",
-  },
-  parent: {
-    marginTop: 10,
-
-    borderRadius: 20,
-    padding: 12,
-    width: "100%",
-    position: "relative",
-    top: 40,
-    backgroundColor: "#fff",
-  },
   form: {
     flexDirection: "row",
     backgroundColor: "#eef1f4",
