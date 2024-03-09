@@ -27,7 +27,7 @@ const Item = ({ title, test, id }: any) => (
   </Pressable>
 );
 
-export default function ModalScreen() {
+export default function LocalityScreen() {
   const [destinationValue, setDestinationValue] = useState("Уфа");
   const { data, isLoading } = LocalityApi.useGetLocalitiesQuery();
 
@@ -39,7 +39,7 @@ export default function ModalScreen() {
       <View style={styles.form}>
         <View>
           <AntDesign
-            name="enviromento"
+            name="enviroment"
             size={28}
             color="black"
             backgroundColor="#fff"

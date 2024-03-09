@@ -15,7 +15,7 @@ const LocationInput = () => {
         <Pressable
           onPress={() =>
             router.push({
-              pathname: "/modal",
+              pathname: "/locality",
             } as any)
           }
         >
@@ -25,7 +25,7 @@ const LocationInput = () => {
         <Pressable
           onPress={() =>
             router.push({
-              pathname: "/modal",
+              pathname: "/locality",
             } as any)
           }
         >
