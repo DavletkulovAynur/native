@@ -3,68 +3,64 @@ import {
   Dimensions,
   FlatList,
   Platform,
+  Pressable,
   StyleSheet,
   TextInput,
 } from "react-native";
 
-import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
-import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { LocalityApi } from "./api";
+import { useState } from "react";
 
 const windowWidth = Dimensions.get("window").width;
-const paddingValue = 20; // Adjust this based on your padding
-
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
-];
 
 type ItemProps = { title: string; id: string };
 
-const Item = ({ title }: any) => (
-  <View>
-    <Text style={styles.title}>{title}</Text>
-  </View>
+const Item = ({ title, test, id }: any) => (
+  <Pressable onPress={() => test(id)}>
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtitle}>Хайбуллинский</Text>
+      <View style={styles.separator} />
+    </View>
+  </Pressable>
 );
 
 export default function ModalScreen() {
+  const [destinationValue, setDestinationValue] = useState("Уфа");
   const { data, isLoading } = LocalityApi.useGetLocalitiesQuery();
 
+  const test = (id: string) => {
+    console.log("test", id);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.form}>
         <View>
-          <FontAwesome
-            name="search"
-            size={24}
+          <AntDesign
+            name="enviromento"
+            size={28}
             color="black"
             backgroundColor="#fff"
           />
         </View>
 
         <View style={styles.inputContainer}>
-          <TextInput style={styles.input} />
+          <TextInput style={styles.input} value={destinationValue} />
 
           <View style={styles.separator} />
 
-          <TextInput style={styles.input} />
+          <TextInput style={styles.input} autoFocus placeholder="Куда" />
         </View>
       </View>
       <FlatList
         data={data as ItemProps[]}
-        renderItem={({ item }) => <Item title={item.title} />}
+        renderItem={({ item }) => (
+          <Item test={test} title={item.title} id={item.id} />
+        )}
         keyExtractor={(item) => item.id}
+        style={styles.list}
       />
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
@@ -80,9 +76,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 12,
   },
+  item: {
+    backgroundColor: "#fff",
+  },
   title: {
-    fontSize: 20,
+    fontSize: 14,
     fontWeight: "bold",
+    textTransform: "uppercase",
+  },
+  subtitle: {
+    marginTop: 4,
+    fontSize: 10,
+    color: "#5a6472",
   },
   form: {
     flexDirection: "row",
@@ -91,12 +96,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 8,
     padding: 12,
+    paddingTop: 16,
+    paddingBottom: 16,
     overflow: "hidden",
     width: windowWidth - 20,
   },
   inputContainer: {
     marginLeft: 10,
     width: windowWidth - 12,
+    backgroundColor: "#fff",
   },
   point: {
     fontSize: 16,
@@ -104,17 +112,25 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   separator: {
-    // marginVertical: 15,
+    marginVertical: 16,
     height: 1,
     width: "100%",
     backgroundColor: "#e1e5e9",
   },
   input: {
-    height: 60,
+    // height: 60,
     // margin: 12,
+    fontSize: 16,
+    // fontWeight: "bold",
     borderWidth: 0,
     // paddingTop: 30,
     // paddingBottom: 30,
     backgroundColor: "#fff",
+  },
+  list: {
+    marginTop: 20,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 20,
   },
 });

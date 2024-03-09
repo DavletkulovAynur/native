@@ -33,10 +33,11 @@ export default function TabLayout() {
           title: "Поездки",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerShown: false,
+        
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="setting"
         options={{
           title: "Профиль",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
