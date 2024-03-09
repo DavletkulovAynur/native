@@ -1,6 +1,6 @@
-import React from "react";
-import Main from "@/app/pages/main/Main";
-import { View } from "@/components/Themed";
+import React, { useRef, useState } from "react";
+import { View, Pressable, ScrollView, StyleSheet, Text } from "react-native";
+import Main from "@/app/tabScreens/main";
 
 export default function One() {
   return (
@@ -9,3 +9,9 @@ export default function One() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    // backgroundColor: "#89cffb",
+  },
+});

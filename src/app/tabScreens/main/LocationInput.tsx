@@ -19,7 +19,7 @@ const LocationInput = () => {
             } as any)
           }
         >
-          {() => <Text style={styles.point}>Откуда</Text>}
+          {() => <Text style={styles.point}>Уфа</Text>}
         </Pressable>
         <View style={styles.separator} />
         <Pressable
@@ -29,7 +29,8 @@ const LocationInput = () => {
             } as any)
           }
         >
-          {() => <Text style={styles.point}>Куда</Text>}
+          {() => 
+          <Text style={styles.test}>Куда</Text>}
         </Pressable>
       </View>
     </View>
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#eef1f4",
     display: "flex",
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 12,
     overflow: "hidden",
   },
@@ -56,6 +57,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#000",
+  },
+  test: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#5a6472",
   },
   separator: {
     marginVertical: 15,

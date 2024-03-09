@@ -3,10 +3,10 @@ import { StyleSheet } from "react-native";
 // import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 
-export default function TabTwoScreen() {
+export default function Setting() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+      <Text style={styles.title}>Settings</Text>
       {/* <EditScreenInfo path="app/(tabs)/two.tsx" /> */}
     </View>
   );
