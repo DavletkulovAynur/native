@@ -6,6 +6,7 @@ import {
   Image,
   ImageSourcePropType,
   Pressable,
+  Dimensions,
 } from "react-native";
 import ufa from "@assets/images/ufa.jpg";
 
@@ -23,6 +24,7 @@ const Card = () => {
           <Text style={styles.taxiParkText}>Юлдаш</Text>
         </View>
       </View>
+
       <Pressable style={styles.button}>
         <Text style={styles.text}>ЗАКАЗАТЬ</Text>
       </Pressable>
@@ -31,6 +33,16 @@ const Card = () => {
 };
 
 const styles = StyleSheet.create({
+  pagerView: {
+    width: "100%",
+    height: "100%",
+  },
+  page: {
+    backgroundColor: "red",
+  },
+  paget: {
+    backgroundColor: "black",
+  },
   button: {
     marginTop: 12,
     alignItems: "center",
@@ -39,7 +51,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 10,
     elevation: 3,
-    backgroundColor: "#fae569",
+    backgroundColor: "#ff8f5c",
   },
   text: {
     fontSize: 16,
@@ -50,10 +62,10 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: "#f2fafe",
-    margin: 20,
+    margin: 10,
     borderRadius: 10,
     padding: 20,
-    marginTop: 70,
+    marginTop: 60,
   },
   title: {
     fontSize: 20,

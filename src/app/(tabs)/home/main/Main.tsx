@@ -1,24 +1,16 @@
 import { View } from "@/components/Themed";
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  Image,
-  ImageSourcePropType,
-  ImageBackground,
-  ScrollView,
-} from "react-native";
-import LocationInput from "./LocationInput";
+import { StyleSheet, Text } from "react-native";
+import LocationInput from "../common/LocationInput";
 import Title from "./Title";
 import Logo from "./Logo";
 import Card from "./Card";
-import bh from "@assets/images/bh.jpg";
 
 const Main: React.FC<any> = ({ scrollPosition }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {/* <Title /> */}
+        <Title />
         <View style={styles.form}>
           <Logo />
           <LocationInput />
@@ -47,7 +39,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 12,
     position: "relative",
-    top: 80,
+    top: 50,
     backgroundColor: "#fff",
   },
   test: {

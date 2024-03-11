@@ -12,6 +12,7 @@ const LocationInput = () => {
       </View>
 
       <View style={styles.inputContainer}>
+        
         <Pressable
           onPress={() =>
             router.push({
