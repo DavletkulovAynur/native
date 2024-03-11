@@ -1,8 +1,11 @@
-import { MonoText } from "@/components/StyledText";
 import { StyleSheet, Text } from "react-native";
 
 const Title = () => {
-  return <Text style={styles.title}>Ваши километры{"\n"}наше преданное внимание</Text>;
+  return (
+    <Text style={styles.title}>
+      Ваши километры{"\n"}наше преданное внимание
+    </Text>
+  );
 };
 
 export default Title;
@@ -10,8 +13,8 @@ export default Title;
 const styles = StyleSheet.create({
   title: {
     marginTop: 60,
-    fontSize: 26,
-    fontWeight: "bold",
+    fontSize: 24,
+    fontWeight: "900",
     color: "#000",
     textAlign: "center",
     fontFamily: "RobotoBlack",

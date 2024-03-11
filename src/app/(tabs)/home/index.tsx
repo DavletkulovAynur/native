@@ -1,11 +1,21 @@
 import React, { useRef, useState } from "react";
 import { View, Pressable, ScrollView, StyleSheet, Text } from "react-native";
-import Main from "@/app/tabScreens/main";
+import Main from "./main";
+import { router } from "expo-router";
 
 export default function One() {
   return (
-    <View>
+    <View style={styles.container}>
       <Main />
+      <Pressable
+        onPress={() =>
+          router.push({
+            pathname: "/home/routes",
+          } as any)
+        }
+      >
+        {() => <Text>Уфа</Text>}
+      </Pressable>
     </View>
   );
 }
