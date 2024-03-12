@@ -1,4 +1,4 @@
 export const CONSTANTS = {
-  devBaseUrl: "https://jsonplaceholder.typicode.com",
+  devBaseUrl: "http://localhost:9000/api",
   prodBaseUrl: "https://api.yul-yort.ru/api",
 };

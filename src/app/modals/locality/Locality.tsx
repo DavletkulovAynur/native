@@ -3,12 +3,13 @@ import { Dimensions, Pressable, StyleSheet, Text } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
 
-const Locality = ({ title, test, id }: any) => {
+const Locality = ({ item }: any) => {
+  const { id, name, district } = item;
   return (
     <Pressable onPress={() => test(id)}>
       <View style={styles.item}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>Хайбуллинский</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.subtitle}>{district}</Text>
         <View style={styles.separator} />
       </View>
     </Pressable>

@@ -26,8 +26,7 @@ const Localities = () => {
       renderItem={({ item }) => (
         <Locality
           test={test}
-          title={item.title}
-          id={item.id}
+          item={item}
           isLoading={isLoading}
         />
       )}

@@ -1,10 +1,17 @@
+import { RootState } from "@/app/store/store";
 import { AntDesign } from "@expo/vector-icons";
 import { FC } from "react";
 import { Dimensions, StyleSheet, TextInput, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 
 const Form: FC<any> = ({ destinationValue }) => {
+  // const [departure, setDepature] = useState(destinationValue);
+  const { pointOfArrival, pointOfDeparture } = useSelector(
+    (state: RootState) => state.locality
+  );
+  // const dispatch = useDispatch();
   return (
     <View style={styles.form}>
       <View>
@@ -17,7 +24,7 @@ const Form: FC<any> = ({ destinationValue }) => {
       </View>
 
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} value={destinationValue} />
+        <TextInput style={styles.input} value={pointOfDeparture} />
 
         <View style={styles.separator} />
 

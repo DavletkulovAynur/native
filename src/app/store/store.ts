@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { Api } from "@/app/api";
+import localityReducer from "./slices/localitySlice";
 
 export const store = configureStore({
   reducer: {
     [Api.reducerPath]: Api.reducer,
+    locality: localityReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(Api.middleware),
