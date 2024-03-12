@@ -1,47 +1,47 @@
 // LocationInput.js
 import React from "react";
-import { View, Text } from "@/components/Themed";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { StyleSheet, Pressable } from "react-native";
+import { useSelector } from "react-redux";
+
+import { RootState } from "@/app/store/store";
+
 const LocationInput = () => {
+  const { pointOfArrival, pointOfDeparture } = useSelector(
+    (state: RootState) => state.locality
+  );
+
   return (
-    <View style={styles.form}>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.iconContainer}>
         <FontAwesome name="search" size={24} color="black" />
       </View>
-
       <View style={styles.inputContainer}>
-        
-        <Pressable
-          onPress={() =>
-            router.push({
-              pathname: "/locality",
-            } as any)
-          }
-        >
-          {() => <Text style={styles.point}>Уфа</Text>}
-        </Pressable>
+        {renderPointText(pointOfDeparture, "Откуда")}
         <View style={styles.separator} />
-        <Pressable
-          onPress={() =>
-            router.push({
-              pathname: "/locality",
-            } as any)
-          }
-        >
-          {() => 
-          <Text style={styles.test}>Куда</Text>}
-        </Pressable>
+        {renderPointText(pointOfArrival, "Куда")}
       </View>
     </View>
   );
 };
 
-export default LocationInput;
+const renderPointText = (point: string, placeholder: string) => (
+  <Pressable
+    onPress={() =>
+      router.push({
+        pathname: "/locality",
+      } as any)
+    }
+  >
+    <Text style={point ? styles.point : styles.pointNotSpecified}>
+      {point || placeholder}
+    </Text>
+  </Pressable>
+);
 
 const styles = StyleSheet.create({
-  form: {
+  container: {
     flexDirection: "row",
     backgroundColor: "#eef1f4",
     display: "flex",
@@ -50,16 +50,18 @@ const styles = StyleSheet.create({
     padding: 12,
     overflow: "hidden",
   },
+  iconContainer: {
+    marginRight: 10,
+  },
   inputContainer: {
-    marginLeft: 10,
     width: "100%",
   },
   point: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#000",
+    color: "#1f1e22",
   },
-  test: {
+  pointNotSpecified: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#5a6472",
@@ -71,3 +73,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#e1e5e9",
   },
 });
+
+export default LocationInput;

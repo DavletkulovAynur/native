@@ -5,7 +5,7 @@ const LocalityApi = BaseApi.injectEndpoints({
     getLocalities: builder.query<unknown, void>({
       query: () => {
         return {
-          url: "/todos",
+          url: "/localities",
           method: "GET",
         };
       },
