@@ -1,17 +1,32 @@
+import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
 import { RootState } from "@/app/store/store";
 import { AntDesign } from "@expo/vector-icons";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Dimensions, StyleSheet, TextInput, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 
 const Form: FC<any> = ({ destinationValue }) => {
-  // const [departure, setDepature] = useState(destinationValue);
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const [departureInput, setDepartureInput] = useState(
+    pointOfDeparture?.name || ""
+  );
+
+  const handleDepartureChange = (text: string) => {
+    setDepartureInput(text);
+    dispatch(
+      updatePointOfDeparture({
+        name: "text",
+        id: "1",
+      })
+    );
+  };
+
   return (
     <View style={styles.form}>
       <View>
@@ -24,7 +39,12 @@ const Form: FC<any> = ({ destinationValue }) => {
       </View>
 
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} value={pointOfDeparture} />
+        <TextInput
+          style={styles.input}
+          value={departureInput}
+          placeholder="Откуда"
+          onChangeText={handleDepartureChange} // Обработчик изменения текста
+        />
 
         <View style={styles.separator} />
 

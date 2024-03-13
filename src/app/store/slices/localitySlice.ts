@@ -1,20 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { TPoint } from "./types";
 
-export interface LocalityState {
-  pointOfDeparture: string;
-  pointOfArrival: string;
+export interface ILocalityState {
+  pointOfDeparture: TPoint | null;
+  pointOfArrival: TPoint | null;
 }
 
-const initialState: LocalityState = {
-  pointOfDeparture: "Уфа",
-  pointOfArrival: "",
+const initialState: ILocalityState = {
+  pointOfDeparture: {
+    name: "Уфа",
+    id: "1",
+  },
+  pointOfArrival: null,
 };
 
 export const localitySlice = createSlice({
   name: "locality",
   initialState,
-  reducers: {},
+  reducers: {
+    updatePointOfDeparture: (state, action: PayloadAction<TPoint | null>) => {
+      state.pointOfDeparture = action.payload;
+    },
+  },
 });
+
+export const { updatePointOfDeparture } = localitySlice.actions;
 
 export default localitySlice.reducer;
