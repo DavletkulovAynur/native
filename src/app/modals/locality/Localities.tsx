@@ -2,18 +2,17 @@ import { Dimensions, FlatList, StyleSheet, Text } from "react-native";
 import { LocalityApi } from "@/app/api";
 import Locality from "./Locality";
 import { View } from "@/components/Themed";
+import { useState } from "react";
 type ItemProps = { title: string; id: string };
 
 const windowWidth = Dimensions.get("window").width;
 
-const Localities = () => {
-  const { data, isLoading } = LocalityApi.useGetLocalitiesQuery();
-
+const Localities = ({ localities, isLoading, isFetching }: any) => {
   const test = (id: string) => {
     console.log("test", id);
   };
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <View style={styles.load}>
         <Text>Loading...</Text>
@@ -22,13 +21,9 @@ const Localities = () => {
   }
   return (
     <FlatList
-      data={data as ItemProps[]}
+      data={localities as ItemProps[]}
       renderItem={({ item }) => (
-        <Locality
-          test={test}
-          item={item}
-          isLoading={isLoading}
-        />
+        <Locality test={test} item={item} isLoading={isLoading} />
       )}
       keyExtractor={(item) => item.id}
       style={styles.list}

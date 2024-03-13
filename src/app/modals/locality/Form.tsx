@@ -1,5 +1,6 @@
 import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
 import { RootState } from "@/app/store/store";
+import useDebounce from "@/hooks/useDebounce";
 import { AntDesign } from "@expo/vector-icons";
 import { FC, useState } from "react";
 import { Dimensions, StyleSheet, TextInput, View } from "react-native";
@@ -7,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 
-const Form: FC<any> = ({ destinationValue }) => {
+const Form: FC<any> = ({ destinationValue, setSearch }) => {
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
@@ -17,8 +18,14 @@ const Form: FC<any> = ({ destinationValue }) => {
     pointOfDeparture?.name || ""
   );
 
-  const handleDepartureChange = (text: string) => {
-    setDepartureInput(text);
+  const handleChange = useDebounce((value) => {
+    setSearch(value);
+  }, 1000);
+
+  const handleDepartureChange = (value: string) => {
+    handleChange(value);
+    setDepartureInput(value);
+    // setSearch(value);
     dispatch(
       updatePointOfDeparture({
         name: "text",
