@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 
-const Form: FC<any> = ({ destinationValue }) => {
+const Form: FC<any> = ({ destinationValue, setSearch }) => {
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
@@ -18,13 +18,14 @@ const Form: FC<any> = ({ destinationValue }) => {
     pointOfDeparture?.name || ""
   );
 
-  const handleChange = useDebounce(() => {
-    console.log('Debounced value:');
-  }, 2200);
+  const handleChange = useDebounce((value) => {
+    setSearch(value);
+  }, 1000);
 
-  const handleDepartureChange = (text: string) => {
-    handleChange();
-    setDepartureInput(text);
+  const handleDepartureChange = (value: string) => {
+    handleChange(value);
+    setDepartureInput(value);
+    // setSearch(value);
     dispatch(
       updatePointOfDeparture({
         name: "text",
