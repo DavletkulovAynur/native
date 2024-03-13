@@ -1,5 +1,6 @@
 import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
 import { RootState } from "@/app/store/store";
+import useDebounce from "@/hooks/useDebounce";
 import { AntDesign } from "@expo/vector-icons";
 import { FC, useState } from "react";
 import { Dimensions, StyleSheet, TextInput, View } from "react-native";
@@ -17,7 +18,12 @@ const Form: FC<any> = ({ destinationValue }) => {
     pointOfDeparture?.name || ""
   );
 
+  const handleChange = useDebounce(() => {
+    console.log('Debounced value:');
+  }, 2200);
+
   const handleDepartureChange = (text: string) => {
+    handleChange();
     setDepartureInput(text);
     dispatch(
       updatePointOfDeparture({

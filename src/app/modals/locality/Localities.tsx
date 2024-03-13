@@ -7,7 +7,11 @@ type ItemProps = { title: string; id: string };
 const windowWidth = Dimensions.get("window").width;
 
 const Localities = () => {
-  const { data, isLoading } = LocalityApi.useGetLocalitiesQuery();
+  const { data, isLoading } = LocalityApi.useGetLocalitiesQuery({
+    search: "",
+  });
+
+  console.log("localities");
 
   const test = (id: string) => {
     console.log("test", id);
@@ -24,11 +28,7 @@ const Localities = () => {
     <FlatList
       data={data as ItemProps[]}
       renderItem={({ item }) => (
-        <Locality
-          test={test}
-          item={item}
-          isLoading={isLoading}
-        />
+        <Locality test={test} item={item} isLoading={isLoading} />
       )}
       keyExtractor={(item) => item.id}
       style={styles.list}
