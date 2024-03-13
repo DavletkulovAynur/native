@@ -6,6 +6,7 @@ import { router } from "expo-router";
 import { useSelector } from "react-redux";
 
 import { RootState } from "@/app/store/store";
+import { TPoint } from "@/app/store/slices/types";
 
 const LocationInput = () => {
   const { pointOfArrival, pointOfDeparture } = useSelector(
@@ -26,7 +27,7 @@ const LocationInput = () => {
   );
 };
 
-const renderPointText = (point: string, placeholder: string) => (
+const renderPointText = (point: TPoint | null, placeholder: string) => (
   <Pressable
     onPress={() =>
       router.push({
@@ -35,7 +36,7 @@ const renderPointText = (point: string, placeholder: string) => (
     }
   >
     <Text style={point ? styles.point : styles.pointNotSpecified}>
-      {point || placeholder}
+      {point?.name || placeholder}
     </Text>
   </Pressable>
 );
