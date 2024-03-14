@@ -12,10 +12,12 @@ const ModalLocality = () => {
     search,
   });
 
+  const isLoadingData = isLoading || isFetching;
+
   return (
     <View style={styles.container}>
       <Form setSearch={setSearch} />
-      <Localities localities={data} isLoading={isLoading} isFetching={isFetching} />
+      <Localities localities={data} isLoadingData={isLoadingData} />
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
     </View>

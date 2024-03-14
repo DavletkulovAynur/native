@@ -3,14 +3,14 @@ import Locality from "./Locality";
 import { View } from "@/components/Themed";
 import { useDispatch } from "react-redux";
 import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
+import { FC } from "react";
 type ItemProps = { title: string; id: string };
 
 interface IProps {
   localities: any[];
-  isLoading: boolean;
-  isFetching: boolean;
+  isLoadingData: boolean;
 }
-const Localities = ({ localities, isLoading, isFetching }: any) => {
+const Localities: FC<IProps> = ({ localities, isLoadingData }) => {
   const dispatch = useDispatch();
 
   const test = (id: string) => {
@@ -22,7 +22,7 @@ const Localities = ({ localities, isLoading, isFetching }: any) => {
     );
   };
 
-  if (isLoading || isFetching) {
+  if (isLoadingData) {
     return (
       <View style={styles.load}>
         <Text>Loading...</Text>
@@ -33,7 +33,7 @@ const Localities = ({ localities, isLoading, isFetching }: any) => {
     <FlatList
       data={localities as ItemProps[]}
       renderItem={({ item }) => (
-        <Locality test={test} item={item} isLoading={isLoading} />
+        <Locality test={test} item={item}/>
       )}
       keyExtractor={(item) => item.id}
       style={styles.list}

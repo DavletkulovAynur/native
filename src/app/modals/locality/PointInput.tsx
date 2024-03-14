@@ -1,15 +1,13 @@
 import { TPoint } from "@/app/store/slices/types";
 import { FC, useEffect, useState } from "react";
 import { StyleSheet, TextInput } from "react-native";
-import { useDispatch } from "react-redux";
 
 interface IProps {
   point: TPoint | null;
   searchLocalities: (value: string) => void;
   placeholder: string;
 }
-const PointInput: FC<any> = ({ point, searchLocalities, placeholder }) => {
-  const dispatch = useDispatch();
+const PointInput: FC<IProps> = ({ point, searchLocalities, placeholder }) => {
   const [value, setValue] = useState(point?.name || "");
 
   const handleDepartureChange = (value: string) => {
@@ -30,8 +28,9 @@ const PointInput: FC<any> = ({ point, searchLocalities, placeholder }) => {
       style={styles.input}
       value={value}
       placeholder={placeholder}
-      onChangeText={handleDepartureChange} // Обработчик изменения текста
+      onChangeText={handleDepartureChange}
       onBlur={handleOnBlur}
+      onFocus={() => searchLocalities("")}
     />
   );
 };
