@@ -1,38 +1,25 @@
-import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
 import { RootState } from "@/app/store/store";
 import useDebounce from "@/hooks/useDebounce";
 import { AntDesign } from "@expo/vector-icons";
 import { FC, useState } from "react";
 import { Dimensions, StyleSheet, TextInput, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import PointInput from "./PointInput";
 
 const windowWidth = Dimensions.get("window").width;
 
-const Form: FC<any> = ({ destinationValue, setSearch }) => {
+interface IProps {
+  setSearch: (value: string) => void;
+}
+
+const Form: FC<IProps> = ({ setSearch }) => {
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
-  const dispatch = useDispatch();
 
-  const [departureInput, setDepartureInput] = useState(
-    pointOfDeparture?.name || ""
-  );
-
-  const handleChange = useDebounce((value) => {
+  const searchLocalities = useDebounce((value) => {
     setSearch(value);
-  }, 1000);
-
-  const handleDepartureChange = (value: string) => {
-    handleChange(value);
-    setDepartureInput(value);
-    // setSearch(value);
-    dispatch(
-      updatePointOfDeparture({
-        name: "text",
-        id: "1",
-      })
-    );
-  };
+  }, 500);
 
   return (
     <View style={styles.form}>
@@ -46,16 +33,17 @@ const Form: FC<any> = ({ destinationValue, setSearch }) => {
       </View>
 
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          value={departureInput}
+        <PointInput
+          point={pointOfDeparture}
+          searchLocalities={searchLocalities}
           placeholder="Откуда"
-          onChangeText={handleDepartureChange} // Обработчик изменения текста
         />
-
         <View style={styles.separator} />
-
-        <TextInput style={styles.input} autoFocus placeholder="Куда" />
+        <PointInput
+          point={pointOfArrival}
+          searchLocalities={searchLocalities}
+          placeholder="Куда"
+        />
       </View>
     </View>
   );
@@ -81,26 +69,10 @@ const styles = StyleSheet.create({
     width: windowWidth - 12,
     backgroundColor: "#fff",
   },
-  point: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#000",
-  },
   separator: {
     marginVertical: 16,
     height: 1,
     width: "100%",
     backgroundColor: "#e1e5e9",
-  },
-  input: {
-    fontSize: 16,
-    borderWidth: 0,
-    backgroundColor: "#fff",
-  },
-  list: {
-    marginTop: 20,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 20,
   },
 });
