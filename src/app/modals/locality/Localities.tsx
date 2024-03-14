@@ -4,10 +4,11 @@ import { View } from "@/components/Themed";
 import { useDispatch } from "react-redux";
 import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
 import { FC } from "react";
+import { TLocality } from "@/app/api/locality/types";
 type ItemProps = { title: string; id: string };
 
 interface IProps {
-  localities: any[];
+  localities: TLocality[];
   isLoadingData: boolean;
 }
 const Localities: FC<IProps> = ({ localities, isLoadingData }) => {
@@ -31,10 +32,8 @@ const Localities: FC<IProps> = ({ localities, isLoadingData }) => {
   }
   return (
     <FlatList
-      data={localities as ItemProps[]}
-      renderItem={({ item }) => (
-        <Locality test={test} item={item}/>
-      )}
+      data={localities}
+      renderItem={({ item }) => <Locality test={test} item={item} />}
       keyExtractor={(item) => item.id}
       style={styles.list}
     />

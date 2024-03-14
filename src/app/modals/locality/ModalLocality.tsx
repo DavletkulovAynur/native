@@ -12,6 +12,7 @@ const ModalLocality = () => {
     search,
   });
 
+  if(!data) return
   const isLoadingData = isLoading || isFetching;
 
   return (
