@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { router } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -16,6 +20,19 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const navigation = useNavigation();
+
+  //МОЖЕМ ТУТ УПРАВЛЯТЬ
+  const { pointOfArrival, pointOfDeparture } = useSelector(
+    (state: RootState) => state.locality
+  );
+  useEffect(() => {
+    if (pointOfArrival) {
+      navigation.goBack();
+      //FIXME:
+      navigation.navigate("routes" as never);
+    }
+  }, [pointOfArrival]);
 
   return (
     <Tabs

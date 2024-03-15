@@ -13,9 +13,7 @@ export default function One() {
             pathname: "/home/routes",
           } as any)
         }
-      >
-        {() => <Text>Уфа</Text>}
-      </Pressable>
+      ></Pressable>
     </View>
   );
 }
