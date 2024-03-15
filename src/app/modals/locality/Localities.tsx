@@ -1,28 +1,17 @@
 import { Dimensions, FlatList, StyleSheet, Text } from "react-native";
 import Locality from "./Locality";
 import { View } from "@/components/Themed";
-import { useDispatch } from "react-redux";
-import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
-type ItemProps = { title: string; id: string };
+import { FC } from "react";
+import { TLocality } from "@/app/api/locality/types";
 
 interface IProps {
-  localities: any[];
-  isLoading: boolean;
-  isFetching: boolean;
+  localities: TLocality[];
+  isLoadingData: boolean;
+  focus: string;
 }
-const Localities = ({ localities, isLoading, isFetching }: any) => {
-  const dispatch = useDispatch();
+const Localities: FC<IProps> = ({ localities, isLoadingData, focus }) => {
 
-  const test = (id: string) => {
-    dispatch(
-      updatePointOfDeparture({
-        name: "text",
-        id: "1",
-      })
-    );
-  };
-
-  if (isLoading || isFetching) {
+  if (isLoadingData) {
     return (
       <View style={styles.load}>
         <Text>Loading...</Text>
@@ -31,10 +20,8 @@ const Localities = ({ localities, isLoading, isFetching }: any) => {
   }
   return (
     <FlatList
-      data={localities as ItemProps[]}
-      renderItem={({ item }) => (
-        <Locality test={test} item={item} isLoading={isLoading} />
-      )}
+      data={localities}
+      renderItem={({ item }) => <Locality item={item} focus={focus} />}
       keyExtractor={(item) => item.id}
       style={styles.list}
     />

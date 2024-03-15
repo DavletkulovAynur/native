@@ -22,9 +22,12 @@ export const localitySlice = createSlice({
     updatePointOfDeparture: (state, action: PayloadAction<TPoint | null>) => {
       state.pointOfDeparture = action.payload;
     },
+    updatePointOfArrival: (state, action: PayloadAction<TPoint | null>) => {
+      state.pointOfArrival = action.payload;
+    },
   },
 });
 
-export const { updatePointOfDeparture } = localitySlice.actions;
+export const { updatePointOfDeparture, updatePointOfArrival } = localitySlice.actions;
 
 export default localitySlice.reducer;

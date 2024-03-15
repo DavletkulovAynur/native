@@ -1,8 +1,9 @@
 import BaseApi from "../baseApi";
+import { TLocality } from "./types";
 
 const LocalityApi = BaseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getLocalities: builder.query<unknown, any>({
+    getLocalities: builder.query<TLocality[], any>({
       query: (params) => {
         return {
           url: "/localities",
