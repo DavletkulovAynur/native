@@ -1,27 +1,15 @@
 import { Dimensions, FlatList, StyleSheet, Text } from "react-native";
 import Locality from "./Locality";
 import { View } from "@/components/Themed";
-import { useDispatch } from "react-redux";
-import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
 import { FC } from "react";
 import { TLocality } from "@/app/api/locality/types";
-type ItemProps = { title: string; id: string };
 
 interface IProps {
   localities: TLocality[];
   isLoadingData: boolean;
+  focus: string;
 }
-const Localities: FC<IProps> = ({ localities, isLoadingData }) => {
-  const dispatch = useDispatch();
-
-  const test = (id: string) => {
-    dispatch(
-      updatePointOfDeparture({
-        name: "text",
-        id: "1",
-      })
-    );
-  };
+const Localities: FC<IProps> = ({ localities, isLoadingData, focus }) => {
 
   if (isLoadingData) {
     return (
@@ -33,7 +21,7 @@ const Localities: FC<IProps> = ({ localities, isLoadingData }) => {
   return (
     <FlatList
       data={localities}
-      renderItem={({ item }) => <Locality test={test} item={item} />}
+      renderItem={({ item }) => <Locality item={item} focus={focus} />}
       keyExtractor={(item) => item.id}
       style={styles.list}
     />

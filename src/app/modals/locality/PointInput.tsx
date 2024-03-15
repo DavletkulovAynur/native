@@ -5,9 +5,10 @@ import { StyleSheet, TextInput } from "react-native";
 interface IProps {
   point: TPoint | null;
   searchLocalities: (value: string) => void;
-  placeholder: string;
+  setFocus: (value: string) => void;
+  inputData: any
 }
-const PointInput: FC<IProps> = ({ point, searchLocalities, placeholder }) => {
+const PointInput: FC<IProps> = ({ point, searchLocalities, setFocus, inputData }) => {
   const [value, setValue] = useState(point?.name || "");
 
   const handleDepartureChange = (value: string) => {
@@ -23,14 +24,20 @@ const PointInput: FC<IProps> = ({ point, searchLocalities, placeholder }) => {
     setValue(point?.name || "");
   };
 
+  const handleOnFocus = () => {
+    searchLocalities("")
+    setFocus(inputData.Focus);
+  };
+
   return (
     <TextInput
+      autoFocus
       style={styles.input}
       value={value}
-      placeholder={placeholder}
+      placeholder={inputData.Placeholder}
       onChangeText={handleDepartureChange}
       onBlur={handleOnBlur}
-      onFocus={() => searchLocalities("")}
+      onFocus={handleOnFocus}
     />
   );
 };

@@ -1,18 +1,20 @@
 import { RootState } from "@/app/store/store";
 import useDebounce from "@/hooks/useDebounce";
 import { AntDesign } from "@expo/vector-icons";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Dimensions, StyleSheet, TextInput, View } from "react-native";
 import { useSelector } from "react-redux";
 import PointInput from "./PointInput";
+import { ARRIVAL_INPUT, DEPARTURE_INPUT } from "./types";
 
 const windowWidth = Dimensions.get("window").width;
 
 interface IProps {
   setSearch: (value: string) => void;
+  setFocus: (value: string) => void;
 }
 
-const Form: FC<IProps> = ({ setSearch }) => {
+const Form: FC<IProps> = ({ setSearch, setFocus }) => {
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
@@ -36,13 +38,15 @@ const Form: FC<IProps> = ({ setSearch }) => {
         <PointInput
           point={pointOfDeparture}
           searchLocalities={searchLocalities}
-          placeholder="Откуда"
+          inputData={DEPARTURE_INPUT}
+          setFocus={setFocus}
         />
         <View style={styles.separator} />
         <PointInput
           point={pointOfArrival}
           searchLocalities={searchLocalities}
-          placeholder="Куда"
+          inputData={ARRIVAL_INPUT}
+          setFocus={setFocus}
         />
       </View>
     </View>

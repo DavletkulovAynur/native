@@ -1,13 +1,34 @@
+import { TLocality } from "@/app/api/locality/types";
+import {
+  updatePointOfArrival,
+  updatePointOfDeparture,
+} from "@/app/store/slices/localitySlice";
 import { View } from "@/components/Themed";
-import { Dimensions, Pressable, StyleSheet, Text } from "react-native";
+import { FC } from "react";
+import { Pressable, StyleSheet, Text } from "react-native";
+import { useDispatch } from "react-redux";
 
-const windowWidth = Dimensions.get("window").width;
+interface IProps {
+  item: TLocality;
+  focus: string;
+}
+const Locality: FC<IProps> = ({ item, focus }) => {
+  const dispatch = useDispatch();
+  const updateFunction =
+    focus === "departureInput" ? updatePointOfDeparture : updatePointOfArrival;
 
-const Locality = ({ item, test }: any) => {
-  const { id, name, district } = item;
-  console.log("id", id);
+  const test = (location: TLocality) => {
+    dispatch(
+      updateFunction({
+        name: location.name,
+        id: location.id,
+      })
+    );
+  };
+
+  const { name, district } = item;
   return (
-    <Pressable onPress={() => test(id)}>
+    <Pressable onPress={() => test(item)}>
       <View style={styles.item}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.subtitle}>{district}</Text>
