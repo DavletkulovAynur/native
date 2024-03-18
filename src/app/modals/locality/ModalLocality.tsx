@@ -9,21 +9,25 @@ import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
 import { FOCUS_INPUT } from "./types";
 
 const ModalLocality = () => {
-  //НА КАКОМ ИНПУТЕ FOCUS
-    const [focus, setFocus] = useState<string>(FOCUS_INPUT.DEPARTURE);
-  //
+  const [focus, setFocus] = useState<string>(FOCUS_INPUT.DEPARTURE);
+
   const [search, setSearch] = useState<string>("");
   const { data, isLoading, isFetching } = LocalityApi.useGetLocalitiesQuery({
     search,
   });
 
-  if(!data) return
+  //FIXME: обработать ошибку отсуствия значения
+  if (!data) return;
   const isLoadingData = isLoading || isFetching;
 
   return (
     <View style={styles.container}>
-      <Form setSearch={setSearch} setFocus={setFocus}/>
-      <Localities localities={data} isLoadingData={isLoadingData} focus={focus} />
+      <Form setSearch={setSearch} setFocus={setFocus} />
+      <Localities
+        localities={data}
+        isLoadingData={isLoadingData}
+        focus={focus}
+      />
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
     </View>

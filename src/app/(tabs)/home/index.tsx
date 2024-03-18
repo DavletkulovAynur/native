@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { View, Pressable, ScrollView, StyleSheet, Text } from "react-native";
+import React from "react";
+import { View, Pressable, StyleSheet, Text } from "react-native";
 import Main from "./main";
 import { router } from "expo-router";
 

@@ -5,7 +5,7 @@ import { FC } from "react";
 import { Dimensions, StyleSheet, TextInput, View } from "react-native";
 import { useSelector } from "react-redux";
 import PointInput from "./PointInput";
-import { ARRIVAL_INPUT, DEPARTURE_INPUT } from "./types";
+import { FOCUS_INPUT } from "./types";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -54,6 +54,16 @@ const Form: FC<IProps> = ({ setSearch, setFocus }) => {
 };
 
 export default Form;
+
+const DEPARTURE_INPUT = {
+  Placeholder: "Откуда",
+  Focus: FOCUS_INPUT.DEPARTURE,
+};
+
+const ARRIVAL_INPUT = {
+  Placeholder: "Куда",
+  Focus: FOCUS_INPUT.ARRIVAL,
+};
 
 const styles = StyleSheet.create({
   form: {

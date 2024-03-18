@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   },
 
   list: {
+    width: "100%",
     marginTop: 20,
     backgroundColor: "#fff",
     borderRadius: 10,
