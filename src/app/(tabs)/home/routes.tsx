@@ -1,8 +1,6 @@
 import { Linking, ScrollView, Text, View } from "react-native";
 import { StyleSheet } from "react-native";
 import LocationInput from "./common";
-import useFormattedPhoneNumber from "@/hooks/useFormattedPhoneNumber";
-import { useMemo } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
 const Routes = () => {
@@ -16,7 +14,7 @@ const Routes = () => {
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <LocationInput />
+        <LocationInput iconName="chevron-left"/>
       </View>
       <ScrollView style={styles.offers}>
         <View style={styles.wrapper}>
