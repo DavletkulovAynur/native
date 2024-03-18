@@ -9,10 +9,8 @@ const DefaultTheme = {
   roundness: 2,
   colors: {
     ...Default.colors,
-    primary: "red",
-    background: "red",
-    card: "red",
-    text: "red",
+    primary: "#89cffb",
+    text: "#1f1e22",
   },
 };
 

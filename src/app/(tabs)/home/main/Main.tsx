@@ -5,13 +5,11 @@ import LocationInput from "../common/LocationInput";
 import Title from "./Title";
 import Logo from "./Logo";
 import Card from "./Card";
-import { useTheme } from "@react-navigation/native";
-import { ThemeContext } from "@/app/theme/ThemeContext";
+import { useTheme } from "@/app/theme";
 
 const Main: React.FC<any> = ({ scrollPosition }) => {
   const { colors } = useTheme();
-  const a = useContext(ThemeContext);
-  
+
   return (
     <View>
       <View style={[styles.header, { backgroundColor: colors.primary }]}>
