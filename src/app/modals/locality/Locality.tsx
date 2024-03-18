@@ -17,7 +17,7 @@ const Locality: FC<IProps> = ({ item, focus }) => {
   const updateFunction =
     focus === "departureInput" ? updatePointOfDeparture : updatePointOfArrival;
 
-  const test = (location: TLocality) => {
+  const setLocation = (location: TLocality) => {
     dispatch(
       updateFunction({
         name: location.name,
@@ -28,11 +28,10 @@ const Locality: FC<IProps> = ({ item, focus }) => {
 
   const { name, district } = item;
   return (
-    <Pressable onPress={() => test(item)}>
+    <Pressable onPress={() => setLocation(item)}>
       <View style={styles.item}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.subtitle}>{district}</Text>
-        <View style={styles.separator} />
       </View>
     </Pressable>
   );
@@ -43,6 +42,9 @@ export default Locality;
 const styles = StyleSheet.create({
   item: {
     backgroundColor: "#fff",
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#e1e5e9",
   },
   title: {
     fontSize: 14,
@@ -53,10 +55,5 @@ const styles = StyleSheet.create({
     marginTop: 4,
     fontSize: 10,
     color: "#5a6472",
-  },
-  separator: {
-    height: 1,
-    width: "100%",
-    backgroundColor: "#e1e5e9",
   },
 });
