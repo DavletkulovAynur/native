@@ -1,19 +1,24 @@
 import { View } from "@/components/Themed";
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text } from "react-native";
 import LocationInput from "../common/LocationInput";
 import Title from "./Title";
 import Logo from "./Logo";
 import Card from "./Card";
+import { useTheme } from "@react-navigation/native";
+import { ThemeContext } from "@/app/theme/ThemeContext";
 
 const Main: React.FC<any> = ({ scrollPosition }) => {
+  const { colors } = useTheme();
+  const a = useContext(ThemeContext);
+  
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
+    <View>
+      <View style={[styles.header, { backgroundColor: colors.primary }]}>
         <Title />
-        <View style={styles.form}>
+        <View style={[styles.form, { backgroundColor: colors.text }]}>
           <Logo />
-          <LocationInput />
+          <LocationInput iconName="search" />
         </View>
       </View>
       <View>
@@ -26,13 +31,8 @@ const Main: React.FC<any> = ({ scrollPosition }) => {
 export default Main;
 
 const styles = StyleSheet.create({
-  container: {
-    // height: "100%",
-    // backgroundColor: "#89cffb",
-  },
   header: {
     padding: 12,
-    backgroundColor: "#89cffb",
     zIndex: 1,
   },
   form: {
@@ -40,22 +40,14 @@ const styles = StyleSheet.create({
     padding: 12,
     position: "relative",
     top: 50,
-    backgroundColor: "#fff",
   },
   test: {
     padding: 20,
     position: "relative",
   },
   logo: {
-    // padding: 20,
     width: "auto",
     height: 300,
-    borderRadius: 10,
-    // resizeMode: "contain",
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust the alpha value for the darkness level
     borderRadius: 10,
   },
 });

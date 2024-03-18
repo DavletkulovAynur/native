@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     marginTop: 60,
     fontSize: 24,
     fontWeight: "900",
-    color: "#000",
+    // color: "#000",
     textAlign: "center",
-    fontFamily: "RobotoBlack",
+    // fontFamily: "RobotoBlack",
   },
 });
