@@ -36,7 +36,12 @@ export function Text(props: TextProps) {
   const { colors } = useTheme();
   const color = colors.text;
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  return (
+    <DefaultText
+      style={[{ color: color, fontFamily: "RobotoBlack" }, style]}
+      {...otherProps}
+    />
+  );
 }
 
 export function View(props: ViewProps) {

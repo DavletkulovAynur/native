@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "900",
     textAlign: "center",
-    // fontFamily: "RobotoBlack",
+    fontFamily: "RobotoBlack",
   },
 });
