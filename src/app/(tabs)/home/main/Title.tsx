@@ -1,4 +1,5 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
+import { Text } from "@/components/Themed";
 
 const Title = () => {
   return (
@@ -15,7 +16,6 @@ const styles = StyleSheet.create({
     marginTop: 60,
     fontSize: 24,
     fontWeight: "900",
-    color: "#000",
     textAlign: "center",
     fontFamily: "RobotoBlack",
   },
