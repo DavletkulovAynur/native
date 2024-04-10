@@ -14,7 +14,7 @@ const Routes = () => {
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <LocationInput iconName="chevron-left"/>
+        <LocationInput iconName="chevron-left" />
       </View>
       <ScrollView style={styles.offers}>
         <View style={styles.wrapper}>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   form: {
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
     padding: 12,
     borderRadius: 12,
     marginTop: 60,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     padding: 20,
     borderRadius: 12,
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

@@ -2,7 +2,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { store } from "./store";
 import { Provider } from "react-redux";
 
@@ -25,7 +25,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
+    // SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
     RobotoBlack: require("../../assets/fonts/Roboto-Black.ttf"),
     ...FontAwesome.font,
   });
@@ -49,10 +49,12 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  //TODO: это отправная точка
   const colorScheme = useColorScheme();
-  console.log("colorScheme", colorScheme);
+
   return (
     <Provider store={store}>
+      {/* TODO: тут определяем тему */}
       <ThemeContext.Provider
         value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >
@@ -67,4 +69,3 @@ function RootLayoutNav() {
     </Provider>
   );
 }
-

@@ -1,14 +1,13 @@
 import React from "react";
 import {
-  View,
   Text,
   StyleSheet,
   Image,
   ImageSourcePropType,
   Pressable,
-  Dimensions,
 } from "react-native";
 import ufa from "@assets/images/ufa.jpg";
+import { View } from "@/components/Themed";
 
 const Card = () => {
   return (
@@ -33,16 +32,6 @@ const Card = () => {
 };
 
 const styles = StyleSheet.create({
-  pagerView: {
-    width: "100%",
-    height: "100%",
-  },
-  page: {
-    backgroundColor: "red",
-  },
-  paget: {
-    backgroundColor: "black",
-  },
   button: {
     marginTop: 12,
     alignItems: "center",
@@ -61,7 +50,7 @@ const styles = StyleSheet.create({
     color: "#1f1e22",
   },
   container: {
-    backgroundColor: "#f2fafe",
+    // backgroundColor: "#f2fafe",
     margin: 10,
     borderRadius: 10,
     padding: 20,

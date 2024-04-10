@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 
-import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { router } from "expo-router";
 import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "@/app/theme";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -19,6 +19,7 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
+  const { colors } = useTheme();
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
 
@@ -34,10 +35,11 @@ export default function TabLayout() {
     }
   }, [pointOfArrival]);
 
+  console.log("colorScheme", colorScheme);
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: colors.primary,
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
