@@ -1,6 +1,6 @@
 import { View } from "@/components/Themed";
-import React, { useContext } from "react";
-import { StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, StyleSheet, Text, RefreshControl } from "react-native";
 import LocationInput from "../common/LocationInput";
 import Title from "./Title";
 import Logo from "./Logo";
@@ -14,7 +14,7 @@ const Main: React.FC<any> = ({ scrollPosition }) => {
     <View>
       <View style={[styles.header, { backgroundColor: colors.primary }]}>
         <Title />
-        <View style={[styles.form, { backgroundColor: colors.text }]}>
+        <View style={[styles.form, { backgroundColor: colors.base }]}>
           <Logo />
           <LocationInput iconName="search" />
         </View>
@@ -38,10 +38,6 @@ const styles = StyleSheet.create({
     padding: 12,
     position: "relative",
     top: 50,
-  },
-  test: {
-    padding: 20,
-    position: "relative",
   },
   logo: {
     width: "auto",

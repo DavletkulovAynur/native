@@ -13,10 +13,8 @@ export default Title;
 
 const styles = StyleSheet.create({
   title: {
-    marginTop: 60,
     fontSize: 24,
     fontWeight: "900",
     textAlign: "center",
-    fontFamily: "RobotoBlack",
   },
 });

@@ -1,25 +1,49 @@
-import React from "react";
-import { View, Pressable, StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  RefreshControl,
+  SafeAreaView,
+} from "react-native";
 import Main from "./main";
-import { router } from "expo-router";
+import { View } from "@/components/Themed";
+import { useTheme } from "@/app/theme";
 
 export default function One() {
+  const { colors } = useTheme();
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = () => {
+    console.log("super");
+  };
+
   return (
-    <View style={styles.container}>
-      <Main />
-      <Pressable
-        onPress={() =>
-          router.push({
-            pathname: "/home/routes",
-          } as any)
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.primary }]}
+    >
+      <ScrollView
+        style={[]}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
-      ></Pressable>
-    </View>
+      >
+        <Main />
+        <View
+          style={[
+            styles.bottomContainer,
+            { backgroundColor: colors.background },
+          ]}
+        ></View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: "#89cffb",
+    flex: 1,
+  },
+  bottomContainer: {
+    height: "100%",
   },
 });

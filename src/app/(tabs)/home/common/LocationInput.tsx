@@ -1,12 +1,14 @@
 // LocationInput.js
 import React, { FC } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { Text, StyleSheet, Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useSelector } from "react-redux";
 
 import { RootState } from "@/app/store/store";
 import { TPoint } from "@/app/store/slices/types";
+import { View } from "@/components/Themed";
+import Separator from "@/components";
 
 interface IProps {
   iconName: string;
@@ -25,13 +27,13 @@ const LocationInput: FC<IProps> = ({ iconName }) => {
     <View style={styles.container}>
       <Pressable onPress={goBackToMainPage}>
         <View style={styles.iconContainer}>
-          <FontAwesome name={iconName as any} size={24} color="black" />
+          <FontAwesome name={iconName as any} size={24} />
         </View>
       </Pressable>
 
       <View style={styles.inputContainer}>
         {renderPointText(pointOfDeparture, "Откуда")}
-        <View style={styles.separator} />
+        <Separator />
         {renderPointText(pointOfArrival, "Куда")}
       </View>
     </View>
@@ -55,11 +57,11 @@ const renderPointText = (point: TPoint | null, placeholder: string) => (
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "#eef1f4",
     display: "flex",
     alignItems: "center",
     borderRadius: 10,
-    padding: 12,
+    paddingVertical: 4,
+    paddingHorizontal: 12,
     overflow: "hidden",
   },
   iconContainer: {
@@ -75,17 +77,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#1f1e22",
+    paddingVertical: 12,
   },
   pointNotSpecified: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#5a6472",
-  },
-  separator: {
-    marginVertical: 15,
-    height: 1,
-    width: "100%",
-    backgroundColor: "#e1e5e9",
+    paddingVertical: 16,
+    // color: "#5a6472",
   },
 });
 
