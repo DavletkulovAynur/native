@@ -58,7 +58,11 @@ function RootLayoutNav() {
       <ThemeContext.Provider
         value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >
-        <Stack>
+        <Stack
+          screenOptions={{
+            contentStyle: { backgroundColor: "#f7f7f7" },
+          }}
+        >
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen
             name="locality"

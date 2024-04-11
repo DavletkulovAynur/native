@@ -15,7 +15,7 @@ const LocalityApi = BaseApi.injectEndpoints({
         await queryFulfilled;
         try {
         } catch (error) {
-          console.log("error", error);
+          //TODO: add notification
         }
       },
     }),
