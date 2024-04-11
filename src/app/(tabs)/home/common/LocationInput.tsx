@@ -32,15 +32,15 @@ const LocationInput: FC<IProps> = ({ iconName }) => {
       </Pressable>
 
       <View style={styles.inputContainer}>
-        {renderPointText(pointOfDeparture, "Откуда")}
+        <RenderPointText point={pointOfDeparture} placeholder={"Откуда"} />
         <Separator />
-        {renderPointText(pointOfArrival, "Куда")}
+        <RenderPointText point={pointOfArrival} placeholder={"Куда"} />
       </View>
     </View>
   );
 };
 
-const renderPointText = (point: TPoint | null, placeholder: string) => (
+const RenderPointText: any = ({point, placeholder}: any) => (
   <Pressable
     onPress={() =>
       router.push({

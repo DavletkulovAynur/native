@@ -1,13 +1,13 @@
 import { View } from "@/components/Themed";
-import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, RefreshControl } from "react-native";
+import React from "react";
+import { StyleSheet } from "react-native";
 import LocationInput from "../common/LocationInput";
 import Title from "./Title";
 import Logo from "./Logo";
 import Card from "./Card";
 import { useTheme } from "@/app/theme";
 
-const Main: React.FC<any> = ({ scrollPosition }) => {
+const Main: React.FC<any> = () => {
   const { colors } = useTheme();
 
   return (

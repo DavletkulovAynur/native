@@ -1,23 +1,24 @@
-import { StatusBar } from "expo-status-bar";
-import { Platform, ScrollView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { View } from "@/components/Themed";
 import { useState } from "react";
 import Localities from "./Localities";
 import Form from "./Form";
 import { LocalityApi } from "@/app/api";
-import { updatePointOfDeparture } from "@/app/store/slices/localitySlice";
 import { FOCUS_INPUT } from "./types";
 
 const ModalLocality = () => {
   const [focus, setFocus] = useState<string>(FOCUS_INPUT.DEPARTURE);
 
   const [search, setSearch] = useState<string>("");
-  const { data, isLoading, isFetching } = LocalityApi.useGetLocalitiesQuery({
+  const {
+    data = [],
+    isLoading,
+    isFetching,
+    isError,
+  } = LocalityApi.useGetLocalitiesQuery({
     search,
   });
 
-  //FIXME: обработать ошибку отсуствия значения
-  if (!data) return;
   const isLoadingData = isLoading || isFetching;
 
   return (
@@ -27,9 +28,8 @@ const ModalLocality = () => {
         localities={data}
         isLoadingData={isLoadingData}
         focus={focus}
+        isError={isError}
       />
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
     </View>
   );
 };

@@ -11,6 +11,13 @@ const LocalityApi = BaseApi.injectEndpoints({
           params,
         };
       },
+      async onQueryStarted(arg, { queryFulfilled }) {
+        await queryFulfilled;
+        try {
+        } catch (error) {
+          console.log("error", error);
+        }
+      },
     }),
   }),
 });

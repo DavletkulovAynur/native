@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, StyleSheet, Text } from "react-native";
+import { FlatList, StyleSheet, Text } from "react-native";
 import Locality from "./Locality";
 import { View } from "@/components/Themed";
 import { FC } from "react";
@@ -8,9 +8,9 @@ interface IProps {
   localities: TLocality[];
   isLoadingData: boolean;
   focus: string;
+  isError: boolean
 }
-const Localities: FC<IProps> = ({ localities, isLoadingData, focus }) => {
-
+const Localities: FC<IProps> = ({ localities, isLoadingData, focus, isError }) => {
   if (isLoadingData) {
     return (
       <View style={styles.load}>
@@ -18,12 +18,20 @@ const Localities: FC<IProps> = ({ localities, isLoadingData, focus }) => {
       </View>
     );
   }
+
+  if (isError) {
+    return (
+      <Text>Failed to fetch data from server. Please try again later.</Text>
+    );
+  }
+
   return (
     <FlatList
       data={localities}
       renderItem={({ item }) => <Locality item={item} focus={focus} />}
       keyExtractor={(item) => item.id}
       style={styles.list}
+      ListEmptyComponent={<Text>No items found!</Text>}
     />
   );
 };
