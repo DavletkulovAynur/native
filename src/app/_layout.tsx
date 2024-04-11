@@ -49,9 +49,9 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  //TODO: это отправная точка
   const colorScheme = useColorScheme();
 
+  //FIXME:  как то нужно передавать backgroundColor
   return (
     <Provider store={store}>
       {/* TODO: тут определяем тему */}

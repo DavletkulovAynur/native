@@ -1,17 +1,14 @@
 import React from "react";
-import {
-  Text,
-  StyleSheet,
-  Image,
-  ImageSourcePropType,
-  Pressable,
-} from "react-native";
+import { Text, StyleSheet, Image, ImageSourcePropType } from "react-native";
 import ufa from "@assets/images/ufa.jpg";
 import { View } from "@/components/Themed";
+import { useTheme } from "@/app/theme";
 
 const Card = () => {
+  const { colors } = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.base }]}>
       <Text style={styles.title}>Горячие предложения</Text>
       <View style={styles.card}>
         <View>
@@ -23,25 +20,11 @@ const Card = () => {
           <Text style={styles.taxiParkText}>Юлдаш</Text>
         </View>
       </View>
-{/* 
-      <Pressable style={styles.button}>
-        <Text style={styles.text}>ЗАКАЗАТЬ</Text>
-      </Pressable> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    marginTop: 12,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 10,
-    elevation: 3,
-    backgroundColor: "#ff8f5c",
-  },
   text: {
     fontSize: 16,
     lineHeight: 21,
@@ -50,12 +33,10 @@ const styles = StyleSheet.create({
     color: "#1f1e22",
   },
   container: {
-    // backgroundColor: "#f2fafe",
     margin: 10,
     borderRadius: 10,
     padding: 20,
     marginTop: 60,
-    height: "100%",
   },
   title: {
     fontSize: 20,

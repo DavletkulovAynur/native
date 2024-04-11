@@ -14,7 +14,7 @@ const DefaultTheme = {
     background: "#f7f7f7",
     separator: "#e1e5e9",
     text: "#191b1f",
-    secondaryText: "#edeff3",
+    secondaryText: "#b0b6bf",
     error: "#ef5350",
     warning: "#ff9800",
     info: "#03a9f4",
