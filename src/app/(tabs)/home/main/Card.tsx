@@ -23,10 +23,10 @@ const Card = () => {
           <Text style={styles.taxiParkText}>Юлдаш</Text>
         </View>
       </View>
-
+{/* 
       <Pressable style={styles.button}>
         <Text style={styles.text}>ЗАКАЗАТЬ</Text>
-      </Pressable>
+      </Pressable> */}
     </View>
   );
 };
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     marginTop: 60,
+    height: "100%",
   },
   title: {
     fontSize: 20,
