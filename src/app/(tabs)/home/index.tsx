@@ -4,9 +4,9 @@ import {
   StyleSheet,
   RefreshControl,
   SafeAreaView,
+  Text,
 } from "react-native";
 import Main from "./main";
-import { View } from "@/components/Themed";
 import { useTheme } from "@/app/theme";
 
 export default function One() {
@@ -19,15 +19,24 @@ export default function One() {
 
   return (
     <SafeAreaView
-      style={[styles.container, { backgroundColor: colors.background }]}
+      style={[styles.container, { backgroundColor: colors.primary }]}
     >
+      <Main />
       <ScrollView
-        style={[]}
+        style={[styles.content]}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <Main />
+        {/* <Text style={styles.title}>Content</Text>
+        <Text style={styles.title}>Content</Text>
+        <Text style={styles.title}>Content</Text>
+        <Text style={styles.title}>Content</Text>
+        <Text style={styles.title}>Content</Text>
+        <Text style={styles.title}>Content</Text>
+        <Text style={styles.title}>Content</Text>
+        <Text style={styles.title}>Content</Text>
+        <Text style={styles.title}>Content</Text> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -37,8 +46,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  bottomContainer: {
-    height: "100%",
-    flexGrow: 1,
+  content: {
+    // height: "100%",
+    flex: 1,
+    backgroundColor: "#f7f7f7",
+    // flexGrow: 1,
+  },
+  title: {
+    margin: 100,
   },
 });
