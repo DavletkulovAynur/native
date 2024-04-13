@@ -9,8 +9,7 @@ import { Provider } from "react-redux";
 import { useColorScheme } from "@/components/useColorScheme";
 import { DarkTheme, DefaultTheme } from "@/constants";
 import { ThemeContext } from "./theme";
-import Toast from 'react-native-toast-message'
-
+import Toast from "react-native-toast-message";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -57,22 +56,23 @@ function RootLayoutNav() {
   return (
     <Provider store={store}>
       {/* TODO: тут определяем тему */}
-      <ThemeContext.Provider
-        value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-      >
-        <Toast />
-        <Stack
-          screenOptions={{
-            contentStyle: { backgroundColor: "#f7f7f7" },
-          }}
+      
+        <ThemeContext.Provider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="locality"
-            options={{ presentation: "modal", headerShown: false }}
-          />
-        </Stack>
-      </ThemeContext.Provider>
+          <Toast />
+          <Stack
+            screenOptions={{
+              contentStyle: { backgroundColor: "#f7f7f7" },
+            }}
+          >
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="locality"
+              options={{ presentation: "modal", headerShown: false }}
+            />
+          </Stack>
+        </ThemeContext.Provider>
     </Provider>
   );
 }
