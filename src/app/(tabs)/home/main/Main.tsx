@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 import LocationInput from "../common/LocationInput";
 import Title from "./Title";
 import Logo from "./Logo";
-import Card from "./Card";
 import { useTheme } from "@/app/theme";
 
 const Main: React.FC<any> = () => {
@@ -12,15 +11,12 @@ const Main: React.FC<any> = () => {
 
   return (
     <View>
-      <View style={[styles.header, { backgroundColor: colors.primary }]}>
+      <View style={[styles.header]}>
         <Title />
         <View style={[styles.form, { backgroundColor: colors.base }]}>
           <Logo />
           <LocationInput iconName="search" />
         </View>
-      </View>
-      <View>
-        <Card />
       </View>
     </View>
   );
@@ -28,6 +24,7 @@ const Main: React.FC<any> = () => {
 
 export default Main;
 
+//Shadow переделать
 const styles = StyleSheet.create({
   header: {
     padding: 12,
@@ -38,6 +35,14 @@ const styles = StyleSheet.create({
     padding: 12,
     position: "relative",
     top: 50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
   logo: {
     width: "auto",

@@ -5,6 +5,8 @@ import Localities from "./Localities";
 import Form from "./Form";
 import { LocalityApi } from "@/app/api";
 import { FOCUS_INPUT } from "./types";
+import Toast from "react-native-toast-message";
+import { toastConfig } from "@/components";
 
 const ModalLocality = () => {
   const [focus, setFocus] = useState<string>(FOCUS_INPUT.DEPARTURE);
@@ -22,14 +24,17 @@ const ModalLocality = () => {
   const isLoadingData = isLoading || isFetching;
 
   return (
-    <View style={styles.container}>
-      <Form setSearch={setSearch} setFocus={setFocus} />
-      <Localities
-        localities={data}
-        isLoadingData={isLoadingData}
-        focus={focus}
-        isError={isError}
-      />
+    <View style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <Form setSearch={setSearch} setFocus={setFocus} />
+        <Localities
+          localities={data}
+          isLoadingData={isLoadingData}
+          focus={focus}
+          isError={isError}
+        />
+      </View>
+      <Toast config={toastConfig} />
     </View>
   );
 };
@@ -41,6 +46,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 12,
-    backgroundColor: "#f7f7f7",
+  },
+  test: {
+    zIndex: 1,
   },
 });

@@ -6,7 +6,6 @@ import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { router } from "expo-router";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "@/app/theme";
 
@@ -50,7 +49,7 @@ export default function TabLayout() {
         name="home"
         options={{
           title: "Поездки",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="car" color={color} />,
           headerShown: false,
         }}
       />
@@ -58,8 +57,8 @@ export default function TabLayout() {
         name="setting"
         options={{
           title: "Профиль",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerShown: false,
+          tabBarIcon: ({ color }) => <TabBarIcon name="bars" color={color} />,
+          headerShown: true,
         }}
       />
     </Tabs>

@@ -9,12 +9,14 @@ import { RootState } from "@/app/store/store";
 import { TPoint } from "@/app/store/slices/types";
 import { View } from "@/components/Themed";
 import Separator from "@/components";
+import { useTheme } from "@/app/theme";
 
 interface IProps {
   iconName: string;
 }
 
 const LocationInput: FC<IProps> = ({ iconName }) => {
+  const { colors } = useTheme();
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
@@ -40,19 +42,29 @@ const LocationInput: FC<IProps> = ({ iconName }) => {
   );
 };
 
-const RenderPointText: any = ({point, placeholder}: any) => (
-  <Pressable
-    onPress={() =>
-      router.push({
-        pathname: "/locality",
-      } as any)
-    }
-  >
-    <Text style={point ? styles.point : styles.pointNotSpecified}>
-      {point?.name || placeholder}
-    </Text>
-  </Pressable>
-);
+const RenderPointText: any = ({ point, placeholder }: any) => {
+  const { colors } = useTheme();
+  const textColor = point ? undefined : colors.secondaryText;
+
+  return (
+    <Pressable
+      onPress={() =>
+        router.push({
+          pathname: "/locality",
+        } as any)
+      }
+    >
+      <Text
+        style={[
+          point ? styles.point : styles.pointNotSpecified,
+          { color: textColor },
+        ]}
+      >
+        {point?.name || placeholder}
+      </Text>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -76,14 +88,13 @@ const styles = StyleSheet.create({
   point: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#1f1e22",
+    // color: "#1f1e22",
     paddingVertical: 12,
   },
   pointNotSpecified: {
     fontSize: 16,
     fontWeight: "bold",
     paddingVertical: 16,
-    // color: "#5a6472",
   },
 });
 

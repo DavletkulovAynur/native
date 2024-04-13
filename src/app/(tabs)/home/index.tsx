@@ -19,7 +19,7 @@ export default function One() {
 
   return (
     <SafeAreaView
-      style={[styles.container, { backgroundColor: colors.primary }]}
+      style={[styles.container, { backgroundColor: colors.background }]}
     >
       <ScrollView
         style={[]}
@@ -28,12 +28,6 @@ export default function One() {
         }
       >
         <Main />
-        <View
-          style={[
-            styles.bottomContainer,
-            { backgroundColor: colors.background },
-          ]}
-        ></View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -45,5 +39,6 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     height: "100%",
+    flexGrow: 1,
   },
 });
