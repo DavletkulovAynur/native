@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import { useColorScheme } from "@/components/useColorScheme";
 import { DarkTheme, DefaultTheme } from "@/constants";
 import { ThemeContext } from "./theme";
+import Toast from 'react-native-toast-message'
+
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -58,6 +60,7 @@ function RootLayoutNav() {
       <ThemeContext.Provider
         value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >
+        <Toast />
         <Stack
           screenOptions={{
             contentStyle: { backgroundColor: "#f7f7f7" },

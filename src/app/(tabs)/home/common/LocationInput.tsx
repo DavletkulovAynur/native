@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   point: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#1f1e22",
+    // color: "#1f1e22",
     paddingVertical: 12,
   },
   pointNotSpecified: {
