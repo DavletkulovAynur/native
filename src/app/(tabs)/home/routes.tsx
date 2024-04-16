@@ -5,70 +5,17 @@ import {
   Text,
   View,
   SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import { StyleSheet } from "react-native";
 import LocationInput from "./common";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@/app/theme";
+import { OrderApi } from "@/app/api";
 
 const localities = [
   {
     id: 1,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 2,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 3,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 4,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 5,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 6,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 7,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 8,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 9,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 10,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 22,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-  {
-    id: 33,
     name: "Юлдаш",
     phone: "+7 (929) 579-77-80",
   },
@@ -77,10 +24,10 @@ const Test = () => {
   return (
     <View style={[styles.wrapper, { backgroundColor: "#fff" }]}>
       <View>
-        <Text style={styles.title}>РУБ 1400</Text>
-        <Text style={styles.name}>Юлдаш</Text>
+        {/* <Text style={styles.title}>{price}</Text>
+        <Text style={styles.name}>{name}</Text>
 
-        <Text style={styles.phone}>89</Text>
+        <Text style={styles.phone}>{phones}</Text> */}
       </View>
       <View>
         <FontAwesome name="telegram" size={32} color="black" />
@@ -89,6 +36,12 @@ const Test = () => {
   );
 };
 const Routes = () => {
+  const params = {
+    originId: 1,
+    destinationId: 2,
+  };
+  const { data, isLoading } = OrderApi.useGetOrdersQuery(params);
+  console.log("data", data);
   const { colors } = useTheme();
   //FIXME: бесконечный цикл
   // const getFormattedNumber = useMemo(() => useFormattedPhoneNumber(), []);
@@ -107,15 +60,15 @@ const Routes = () => {
           data={localities}
           renderItem={() => <Test />}
           keyExtractor={(item) => item.id}
-          style={[styles.test]}
+          style={[{ backgroundColor: colors.background }]}
           ListFooterComponent={<View style={{ marginBottom: 260 }} />}
-          // ListEmptyComponent={
-          //   isLoadingData ? (
-          //     <ActivityIndicator animating={true} />
-          //   ) : (
-          //     <Text>Ничего не найдено</Text>
-          //   )
-          // }
+          ListEmptyComponent={
+            isLoading ? (
+              <ActivityIndicator animating={true} />
+            ) : (
+              <Text>Ничего не найдено</Text>
+            )
+          }
         />
       </View>
     </SafeAreaView>
@@ -135,10 +88,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   offers: {
-    // marginTop: 20,
-    // paddingVertical: 12,
-    // borderRadius: 10,
-    // flex: 1,
     bottom: 100,
   },
   title: {
@@ -146,7 +95,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   name: {
-    color: "#5a6472",
+    // color: "#5a6472",
     marginBottom: 16,
   },
   phone: {
@@ -155,13 +104,17 @@ const styles = StyleSheet.create({
   wrapper: {
     margin: 10,
     padding: 20,
-    borderRadius: 12,
+    borderRadius: 20,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  test: {
-    // marginBottom: 180,
-    backgroundColor: "blue",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
 });
