@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     display: "flex",
     alignItems: "center",
-    borderRadius: 10,
+    borderRadius: 20,
     paddingVertical: 4,
     paddingHorizontal: 12,
     overflow: "hidden",
@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
   point: {
     fontSize: 16,
     fontWeight: "bold",
-    // color: "#1f1e22",
     paddingVertical: 12,
   },
   pointNotSpecified: {

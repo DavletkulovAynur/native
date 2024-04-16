@@ -11,7 +11,7 @@ const Main: React.FC<any> = () => {
 
   return (
     <View>
-      <View style={[styles.header]}>
+      <View style={[styles.header, { backgroundColor: colors.primary }]}>
         <Title />
         <View style={[styles.form, { backgroundColor: colors.base }]}>
           <Logo />
@@ -31,18 +31,9 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   form: {
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 12,
     position: "relative",
-    top: 50,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
   },
   logo: {
     width: "auto",
