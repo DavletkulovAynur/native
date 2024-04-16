@@ -12,22 +12,20 @@ import LocationInput from "./common";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@/app/theme";
 import { OrderApi } from "@/app/api";
+import { FC } from "react";
 
-const localities = [
-  {
-    id: 1,
-    name: "Юлдаш",
-    phone: "+7 (929) 579-77-80",
-  },
-];
-const Test = () => {
+//ПРОБЛЕМЫ: почему item.item
+const Test: FC<any> = ({ item }) => {
+  if (!item) {
+    console.log("what!!!");
+  }
   return (
     <View style={[styles.wrapper, { backgroundColor: "#fff" }]}>
       <View>
-        {/* <Text style={styles.title}>{price}</Text>
-        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.title}>{item.price}</Text>
+        <Text style={styles.name}>{item.agency?.name}</Text>
 
-        <Text style={styles.phone}>{phones}</Text> */}
+        <Text style={styles.phone}>{item.agency?.phones[0]}</Text>
       </View>
       <View>
         <FontAwesome name="telegram" size={32} color="black" />
@@ -57,8 +55,8 @@ const Routes = () => {
           <LocationInput iconName="chevron-left" />
         </View>
         <FlatList
-          data={localities}
-          renderItem={() => <Test />}
+          data={data}
+          renderItem={(item) => <Test item={item.item} />}
           keyExtractor={(item) => item.id}
           style={[{ backgroundColor: colors.background }]}
           ListFooterComponent={<View style={{ marginBottom: 260 }} />}
