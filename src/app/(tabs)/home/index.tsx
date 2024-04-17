@@ -38,15 +38,6 @@ export default function One() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {/* <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text> */}
         <FlatList
           data={data}
           renderItem={renderItem}
