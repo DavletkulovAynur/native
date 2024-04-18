@@ -5,25 +5,17 @@ import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 import { useTheme } from "@/app/theme";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
+import { TOrder } from "@/app/api/order/types";
 
 interface IProps {
-  item: any;
-  isError: boolean;
+  item: TOrder;
 }
 
-const RouteItem: FC<IProps> = ({ item, isError }) => {
+const RouteItem: FC<IProps> = ({ item }) => {
   const { agency, price } = item;
   //FIXME:  список номеров получаем массивом, возможно надо будет переписать
   const phoneNumber = formatPhoneNumberIntl(agency.phones[0]);
   const { colors } = useTheme();
-
-  if (isError) {
-    return (
-      <View>
-        <Text>Failed to fetch data from server. Please try again later.</Text>
-      </View>
-    );
-  }
 
   return (
     <View style={styles.wrapper}>

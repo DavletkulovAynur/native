@@ -1,10 +1,11 @@
 import BaseApi from "../baseApi";
 // import { TLocality } from "./types";
 import Toast from "react-native-toast-message";
+import { TOrder } from "./types";
 
 const OrderApi = BaseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getOrders: builder.query<any, any>({
+    getOrders: builder.query<TOrder[], any>({
       query: (params) => {
         return {
           url: "/orders",

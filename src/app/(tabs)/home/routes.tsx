@@ -1,20 +1,14 @@
 import React, { FC } from "react";
-import {
-  FlatList,
-  Text,
-  View,
-  SafeAreaView,
-  ActivityIndicator,
-} from "react-native";
-import { StyleSheet } from "react-native";
+import { View, SafeAreaView, StyleSheet } from "react-native";
 import LocationInput from "./common";
 import { useTheme } from "@/app/theme";
 import { OrderApi } from "@/app/api";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store/store";
-import { RouteItem } from "./routeComponents";
+import { RouteItems } from "./routeComponents";
 
 const Routes: FC = () => {
+  const { colors } = useTheme();
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
@@ -24,9 +18,7 @@ const Routes: FC = () => {
     destinationId: pointOfArrival?.id,
   };
 
-  const { data, isLoading, isError } = OrderApi.useGetOrdersQuery(params);
-
-  const { colors } = useTheme();
+  const dataOrderApi = OrderApi.useGetOrdersQuery(params);
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.base }]}>
@@ -34,19 +26,7 @@ const Routes: FC = () => {
         <View style={[styles.form, { backgroundColor: colors.base }]}>
           <LocationInput iconName="chevron-left" />
         </View>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <RouteItem item={item} isError={isError} />}
-          keyExtractor={(item) => item.id}
-          ListFooterComponent={<View style={{ marginBottom: 260 }} />}
-          ListEmptyComponent={
-            isLoading ? (
-              <ActivityIndicator animating={true} />
-            ) : (
-              <Text>No orders found for the selected locations</Text>
-            )
-          }
-        />
+        <RouteItems dataOrderApi={dataOrderApi} />
       </View>
     </SafeAreaView>
   );
@@ -61,7 +41,6 @@ const styles = StyleSheet.create({
   form: {
     padding: 12,
     borderRadius: 12,
-    backgroundColor: "#fff",
-    paddingBottom: 24
+    paddingBottom: 24,
   },
 });
