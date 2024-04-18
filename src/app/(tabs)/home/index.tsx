@@ -38,29 +38,22 @@ export default function One() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {/* <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text>
-        <Text style={styles.title}>Content</Text> */}
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          horizontal={true} // Горизонтальный скролл
-          showsHorizontalScrollIndicator={false}
-        />
+        <View style={styles.places}>
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            horizontal={true} // Горизонтальный скролл
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const renderItem = ({ item }: any) => (
-  <View style={{ width: 100, height: 100, backgroundColor: "gray", margin: 5 }}>
+  <View style={[styles.cards]}>
     <Text>{item.title}</Text>
   </View>
 );
@@ -77,5 +70,20 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: 100,
+  },
+
+  //
+  cards: {
+    width: 100,
+    height: 100,
+    backgroundColor: "gray",
+    margin: 5,
+    borderRadius: 24,
+    padding: 12,
+  },
+
+  places: {
+    marginTop: 12,
+    // marginHorizontal: 10,
   },
 });
