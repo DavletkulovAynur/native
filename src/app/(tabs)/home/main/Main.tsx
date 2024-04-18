@@ -10,7 +10,6 @@ const Main: React.FC<any> = () => {
   const { colors } = useTheme();
 
   return (
-    <View>
       <View style={[styles.header, { backgroundColor: colors.primary }]}>
         <Title />
         <View style={[styles.form, { backgroundColor: colors.base }]}>
@@ -18,7 +17,6 @@ const Main: React.FC<any> = () => {
           <LocationInput iconName="search" />
         </View>
       </View>
-    </View>
   );
 };
 
@@ -29,6 +27,7 @@ const styles = StyleSheet.create({
   header: {
     padding: 12,
     zIndex: 1,
+    paddingBottom: 24,
   },
   form: {
     borderRadius: 20,

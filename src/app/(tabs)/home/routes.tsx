@@ -24,16 +24,14 @@ const Routes: FC = () => {
     destinationId: pointOfArrival?.id,
   };
 
-  const { data, isLoading, isError } =
-    OrderApi.useGetOrdersQuery(params);
+  const { data, isLoading, isError } = OrderApi.useGetOrdersQuery(params);
 
   const { colors } = useTheme();
 
-
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.base }]}>
-      <View style={styles.container}>
-        <View style={styles.form}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
+        <View style={[styles.form, { backgroundColor: colors.base }]}>
           <LocationInput iconName="chevron-left" />
         </View>
         <FlatList
@@ -64,5 +62,8 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 12,
     backgroundColor: "#fff",
+    paddingBottom: 24
   },
+
+  //
 });
