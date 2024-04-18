@@ -3,6 +3,8 @@ import React, { FC } from "react";
 import { View, Text } from "@/components/Themed";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
+import { useTheme } from "@/app/theme";
+import { formatPhoneNumberIntl } from "react-phone-number-input";
 
 interface IProps {
   item: any;
@@ -11,17 +13,9 @@ interface IProps {
 
 const RouteItem: FC<IProps> = ({ item, isError }) => {
   const { agency, price } = item;
-
-  // const phoneNumber = "+7 (929) 579-77-80";
-
-  // const handlePhonePress = () => {
-  //   Linking.openURL(`tel:${phoneNumber}`);
-  // };
-
-  // const getFormattedNumber = useMemo(() => {
-  //   // Assuming useFormattedPhoneNumber is your formatting function
-  //   return useFormattedPhoneNumber();
-  // }, []);
+  //FIXME:  список номеров получаем массивом, возможно надо будет переписать
+  const phoneNumber = formatPhoneNumberIntl(agency.phones[0]);
+  const { colors } = useTheme();
 
   if (isError) {
     return (
@@ -33,12 +27,12 @@ const RouteItem: FC<IProps> = ({ item, isError }) => {
 
   return (
     <View style={styles.wrapper}>
-      <View>
+      <View style={[{ backgroundColor: colors.base }]}>
         <Text style={styles.title}>{price}</Text>
         <Text style={styles.name}>{agency.name}</Text>
-        <Text style={styles.phone}>{agency.phones[0]}</Text>
+        <Text style={styles.phone}>{phoneNumber}</Text>
       </View>
-      <View>
+      <View style={[{ backgroundColor: colors.base }]}>
         <FontAwesome name="telegram" size={32} color="black" />
       </View>
     </View>
