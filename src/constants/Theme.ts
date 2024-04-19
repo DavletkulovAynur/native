@@ -8,6 +8,8 @@ const DefaultTheme = {
   ...Default,
   roundness: 2,
   colors: {
+    contrastText: "#ffffff",
+    contrastDefaultText: "#e1e5e9",
     primary: "#89cffb",
     secondary: "#ff8f5c",
     base: "#ffffff",
@@ -26,6 +28,8 @@ const DarkTheme = {
   ...Dark,
   roundness: 2,
   colors: {
+    contrastText: "#ffffff",
+    contrastDefaultText: "#edeff3",
     primary: "#89cffb",
     secondary: "#ff8f5c",
     base: "#000",
