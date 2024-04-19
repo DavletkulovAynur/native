@@ -12,9 +12,10 @@ const windowWidth = Dimensions.get("window").width;
 interface IProps {
   setSearch: (value: string) => void;
   setFocus: (value: string) => void;
+  focus: string;
 }
 
-const Form: FC<IProps> = ({ setSearch, setFocus }) => {
+const Form: FC<IProps> = ({ setSearch, setFocus, focus }) => {
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
@@ -40,6 +41,7 @@ const Form: FC<IProps> = ({ setSearch, setFocus }) => {
           searchLocalities={searchLocalities}
           inputData={DEPARTURE_INPUT}
           setFocus={setFocus}
+          focus={focus === FOCUS_INPUT.DEPARTURE}
         />
         <View style={styles.separator} />
         <PointInput
@@ -47,6 +49,7 @@ const Form: FC<IProps> = ({ setSearch, setFocus }) => {
           searchLocalities={searchLocalities}
           inputData={ARRIVAL_INPUT}
           setFocus={setFocus}
+          focus={focus === FOCUS_INPUT.ARRIVAL}
         />
       </View>
     </View>
