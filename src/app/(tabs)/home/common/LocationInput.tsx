@@ -10,47 +10,60 @@ import { TPoint } from "@/app/store/slices/types";
 import { View } from "@/components/Themed";
 import Separator from "@/components";
 import { useTheme } from "@/app/theme";
+import { FOCUS_INPUT } from "@/app/modals/locality/types";
 
 interface IProps {
   iconName: string;
+  actionFunction?: () => void;
 }
 
-const LocationInput: FC<IProps> = ({ iconName }) => {
+const LocationInput: FC<IProps> = ({ iconName, actionFunction }) => {
   const { colors } = useTheme();
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
 
-  const goBackToMainPage = () => {
-    router.back();
+  //FIXME: передать функцию в props
+  const handlePress = () => {
+    actionFunction?.();
   };
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={goBackToMainPage}>
+      <Pressable onPress={handlePress}>
         <View style={styles.iconContainer}>
           <FontAwesome name={iconName as any} size={24} />
         </View>
       </Pressable>
 
       <View style={styles.inputContainer}>
-        <RenderPointText point={pointOfDeparture} placeholder={"Откуда"} />
+        <RenderPointText
+          point={pointOfDeparture}
+          placeholder={"Откуда"}
+          focusInput={FOCUS_INPUT.DEPARTURE}
+        />
         <Separator />
-        <RenderPointText point={pointOfArrival} placeholder={"Куда"} />
+        <RenderPointText
+          point={pointOfArrival}
+          placeholder={"Куда"}
+          focusInput={FOCUS_INPUT.ARRIVAL}
+        />
       </View>
     </View>
   );
 };
 
-const RenderPointText: any = ({ point, placeholder }: any) => {
+const RenderPointText: any = ({ point, placeholder, focusInput }: any) => {
   const { colors } = useTheme();
   const textColor = point ? undefined : colors.secondaryText;
 
+  //TODO: передаем параметры в компонент
   return (
     <Pressable
       onPress={() =>
         router.push({
           pathname: "/locality",
+          params: { focusInput },
         } as any)
       }
     >

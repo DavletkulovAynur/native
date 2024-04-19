@@ -7,9 +7,13 @@ import { LocalityApi } from "@/app/api";
 import { FOCUS_INPUT } from "./types";
 import Toast from "react-native-toast-message";
 import { toastConfig } from "@/components";
+import { router, useLocalSearchParams } from "expo-router";
 
 const ModalLocality = () => {
-  const [focus, setFocus] = useState<string>(FOCUS_INPUT.DEPARTURE);
+  const { focusInput }: any = useLocalSearchParams();
+  const [focus, setFocus] = useState<string>(
+    focusInput || FOCUS_INPUT.DEPARTURE
+  );
 
   const [search, setSearch] = useState<string>("");
   const {
@@ -26,7 +30,7 @@ const ModalLocality = () => {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
-        <Form setSearch={setSearch} setFocus={setFocus} />
+        <Form setSearch={setSearch} setFocus={setFocus} focus={focus} />
         <Localities
           localities={data}
           isLoadingData={isLoadingData}

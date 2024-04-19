@@ -6,9 +6,16 @@ interface IProps {
   point: TPoint | null;
   searchLocalities: (value: string) => void;
   setFocus: (value: string) => void;
-  inputData: any
+  inputData: any;
+  focus: boolean;
 }
-const PointInput: FC<IProps> = ({ point, searchLocalities, setFocus, inputData }) => {
+const PointInput: FC<IProps> = ({
+  point,
+  searchLocalities,
+  setFocus,
+  inputData,
+  focus
+}) => {
   const [value, setValue] = useState(point?.name || "");
 
   const handleDepartureChange = (value: string) => {
@@ -25,13 +32,13 @@ const PointInput: FC<IProps> = ({ point, searchLocalities, setFocus, inputData }
   };
 
   const handleOnFocus = () => {
-    searchLocalities("")
+    searchLocalities("");
     setFocus(inputData.Focus);
   };
 
   return (
     <TextInput
-      autoFocus
+      autoFocus={focus}
       style={styles.input}
       value={value}
       placeholder={inputData.Placeholder}

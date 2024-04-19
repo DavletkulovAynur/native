@@ -12,6 +12,7 @@ interface IProps {
   item: TLocality;
   focus: string;
 }
+
 const Locality: FC<IProps> = ({ item, focus }) => {
   const dispatch = useDispatch();
   const updateFunction =
