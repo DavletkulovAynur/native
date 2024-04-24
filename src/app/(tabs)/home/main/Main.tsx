@@ -6,17 +6,17 @@ import Title from "./Title";
 import Logo from "./Logo";
 import { useTheme } from "@/app/theme";
 
-const Main: React.FC<any> = () => {
+const Main: React.FC = () => {
   const { colors } = useTheme();
 
   return (
-      <View style={[styles.header, { backgroundColor: colors.primary }]}>
-        <Title />
-        <View style={[styles.form, { backgroundColor: colors.base }]}>
-          <Logo />
-          <LocationInput iconName="search" />
-        </View>
+    <View style={[styles.header, { backgroundColor: colors.primary }]}>
+      <Title />
+      <View style={[styles.form, { backgroundColor: colors.base }]}>
+        <Logo />
+        <LocationInput iconName="search" />
       </View>
+    </View>
   );
 };
 

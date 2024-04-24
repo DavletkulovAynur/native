@@ -2,10 +2,14 @@ import { View } from "@/components/Themed";
 import { Image, ImageSourcePropType, StyleSheet } from "react-native";
 
 import logo from "@assets/images/logo.png";
+import { useTheme } from "@/app/theme";
 
+//FIXME: logo
 const Logo = () => {
+  const { colors } = useTheme();
+
   return (
-    <View style={styles.logoWrapper}>
+    <View style={[styles.logoWrapper, { backgroundColor: colors.base }]}>
       <Image style={styles.logo} source={logo as ImageSourcePropType} />
     </View>
   );

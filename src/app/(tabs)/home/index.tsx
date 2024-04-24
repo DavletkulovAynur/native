@@ -25,7 +25,7 @@ export default function One() {
     >
       <Main />
       <ScrollView
-        style={[styles.content]}
+        style={[styles.content, { backgroundColor: colors.background }]}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    backgroundColor: "#f7f7f7",
   },
   test: {
     height: 50,

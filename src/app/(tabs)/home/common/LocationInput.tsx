@@ -1,13 +1,13 @@
 // LocationInput.js
 import React, { FC } from "react";
-import { Text, StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useSelector } from "react-redux";
 
 import { RootState } from "@/app/store/store";
 import { TPoint } from "@/app/store/slices/types";
-import { View } from "@/components/Themed";
+import { View, Text } from "@/components/Themed";
 import Separator from "@/components";
 import { useTheme } from "@/app/theme";
 import { FOCUS_INPUT } from "@/app/modals/locality/types";
@@ -32,7 +32,7 @@ const LocationInput: FC<IProps> = ({ iconName, actionFunction }) => {
     <View style={styles.container}>
       <Pressable onPress={handlePress}>
         <View style={styles.iconContainer}>
-          <FontAwesome name={iconName as any} size={24} />
+          <FontAwesome name={iconName as any} size={24} color={colors.contrastText} />
         </View>
       </Pressable>
 
@@ -55,7 +55,7 @@ const LocationInput: FC<IProps> = ({ iconName, actionFunction }) => {
 
 const RenderPointText: any = ({ point, placeholder, focusInput }: any) => {
   const { colors } = useTheme();
-  const textColor = point ? undefined : colors.secondaryText;
+  const textColor = point ? colors.text : colors.secondaryText;
 
   //TODO: передаем параметры в компонент
   return (
