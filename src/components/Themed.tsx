@@ -12,22 +12,11 @@ type ThemeProps = {
 export type TextProps = ThemeProps & DefaultText["props"];
 export type ViewProps = ThemeProps & DefaultView["props"];
 
-// export function useThemeColor(
-//   props: { light?: string; dark?: string },
-//   colorName: any
-// ) {
-//   const theme = useColorScheme() ?? "light";
-//   // const colorFromProps = props[theme];
-//   const { colors } = useTheme();
-
-//   return colors[colorName];
-// }
-
-//ЭКСПОРТИРУЕМ КОМПОНЕНТ ТЕКСТ ТОЛЬКО ОТСЮДА
 export function Text(props: TextProps) {
   const { style, ...otherProps } = props;
   const { colors } = useTheme();
   const color = colors.text;
+
 
   return (
     <DefaultText

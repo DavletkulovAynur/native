@@ -2,10 +2,12 @@ import { RootState } from "@/app/store/store";
 import useDebounce from "@/hooks/useDebounce";
 import { AntDesign } from "@expo/vector-icons";
 import { FC } from "react";
-import { Dimensions, StyleSheet, TextInput, View } from "react-native";
+import { Dimensions, StyleSheet} from "react-native";
 import { useSelector } from "react-redux";
 import PointInput from "./PointInput";
 import { FOCUS_INPUT } from "./types";
+import { useTheme } from "@/app/theme";
+import { View } from "@/components/Themed";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -16,6 +18,7 @@ interface IProps {
 }
 
 const Form: FC<IProps> = ({ setSearch, setFocus, focus }) => {
+  const {colors} = useTheme()
   const { pointOfArrival, pointOfDeparture } = useSelector(
     (state: RootState) => state.locality
   );
@@ -25,7 +28,7 @@ const Form: FC<IProps> = ({ setSearch, setFocus, focus }) => {
   }, 500);
 
   return (
-    <View style={styles.form}>
+    <View style={[styles.form, {backgroundColor: colors.base}]}>
       <View>
         <AntDesign
           name="enviroment"
@@ -35,7 +38,7 @@ const Form: FC<IProps> = ({ setSearch, setFocus, focus }) => {
         />
       </View>
 
-      <View style={styles.inputContainer}>
+      <View style={[styles.inputContainer, { backgroundColor: colors.base }]}>
         <PointInput
           point={pointOfDeparture}
           searchLocalities={searchLocalities}
@@ -43,7 +46,7 @@ const Form: FC<IProps> = ({ setSearch, setFocus, focus }) => {
           setFocus={setFocus}
           focus={focus === FOCUS_INPUT.DEPARTURE}
         />
-        <View style={styles.separator} />
+        <View style={[styles.separator, { backgroundColor: colors.separator }]} />
         <PointInput
           point={pointOfArrival}
           searchLocalities={searchLocalities}
@@ -71,7 +74,6 @@ const ARRIVAL_INPUT = {
 const styles = StyleSheet.create({
   form: {
     flexDirection: "row",
-    backgroundColor: "#fff",
     display: "flex",
     alignItems: "center",
     borderRadius: 8,
@@ -84,12 +86,10 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginLeft: 10,
     width: windowWidth - 12,
-    backgroundColor: "#fff",
   },
   separator: {
     marginVertical: 16,
     height: 1,
     width: "100%",
-    backgroundColor: "#e1e5e9",
   },
 });

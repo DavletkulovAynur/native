@@ -8,6 +8,8 @@ const DefaultTheme = {
   ...Default,
   roundness: 2,
   colors: {
+    contrastText: "#ffffff",
+    contrastDefaultText: "#e1e5e9",
     primary: "#89cffb",
     secondary: "#ff8f5c",
     base: "#ffffff",
@@ -26,13 +28,20 @@ const DarkTheme = {
   ...Dark,
   roundness: 2,
   colors: {
-    primary: "#89cffb",
-    secondary: "#ff8f5c",
-    base: "#000",
-    background: "#f7f7f7",
-    separator: "#e1e5e9",
+    primary: "#3c5a6b",
+    background: "#141414",
+    base: "#242528",
     text: "#ffffff",
-    secondaryText: "#edeff3",
+    secondaryText: "#6b6f73",
+    separator: "#e1e5e9",
+    
+    secondary: "#ff8f5c",
+    contrastText: "#ffffff",
+
+    contrastDefaultText: "#edeff3",
+    
+    
+    
     error: "#c62828",
     warning: "#e65100",
     info: "#01579b",

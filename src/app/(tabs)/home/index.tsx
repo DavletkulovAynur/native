@@ -9,6 +9,7 @@ import Main from "./main";
 import { useTheme } from "@/app/theme";
 import { TravelSpots } from "./main/TravelSpots";
 import { TopEvent } from "./main/TopEvent";
+import { View } from "@/components/Themed";
 
 export default function One() {
   const { colors } = useTheme();
@@ -24,13 +25,14 @@ export default function One() {
     >
       <Main />
       <ScrollView
-        style={[styles.content]}
+        style={[styles.content, { backgroundColor: colors.background }]}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
         <TravelSpots />
         <TopEvent />
+        <View style={[styles.test]}></View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -42,6 +44,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    backgroundColor: "#f7f7f7",
+  },
+  test: {
+    height: 50,
   },
 });

@@ -1,4 +1,5 @@
 import { TPoint } from "@/app/store/slices/types";
+import { useTheme } from "@/app/theme";
 import { FC, useEffect, useState } from "react";
 import { StyleSheet, TextInput } from "react-native";
 
@@ -17,6 +18,7 @@ const PointInput: FC<IProps> = ({
   focus
 }) => {
   const [value, setValue] = useState(point?.name || "");
+  const {colors} = useTheme();
 
   const handleDepartureChange = (value: string) => {
     searchLocalities(value);
@@ -39,7 +41,7 @@ const PointInput: FC<IProps> = ({
   return (
     <TextInput
       autoFocus={focus}
-      style={styles.input}
+      style={[styles.input, { color: colors.text }]}
       value={value}
       placeholder={inputData.Placeholder}
       onChangeText={handleDepartureChange}
@@ -55,6 +57,5 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 16,
     borderWidth: 0,
-    backgroundColor: "#fff",
   },
 });
