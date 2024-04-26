@@ -1,29 +1,18 @@
+import React, { FC } from "react";
+import { ImageBackground, Pressable, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 import { Text, View } from "@/components/Themed";
-import React from "react";
-import {
-  Button,
-  ImageBackground,
-  ImageSourcePropType,
-  Pressable,
-  StyleSheet,
-} from "react-native";
-import eventImage from "@assets/images/test/event.jpg";
 import { useTheme } from "@/app/theme";
+import eventImage from "@assets/images/test/event.jpeg";
 
-const TopEvent = () => {
+const Event: FC = () => {
   const { colors } = useTheme();
 
-  const onPress = () => {
-    console.log("onPress");
-  };
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={eventImage as ImageSourcePropType}
-        style={styles.background}
-      >
+      <ImageBackground source={eventImage} style={styles.background}>
         <View style={styles.overlay} />
-        <View style={[{ backgroundColor: 'transparent' }]}>
+        <View style={styles.content}>
           <Text style={[styles.title, { color: colors.contrastText }]}>
             Лунные прогулки
           </Text>
@@ -33,16 +22,20 @@ const TopEvent = () => {
             Под лунным светом: Ночные конные прогулки в загадочном мире
           </Text>
         </View>
-
         <Pressable
           style={[styles.button, { backgroundColor: colors.background }]}
-          onPress={onPress}
         >
           <Text style={styles.buttonText}>Подробнее</Text>
         </Pressable>
       </ImageBackground>
     </View>
   );
+};
+
+Event.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -62,6 +55,9 @@ const styles = StyleSheet.create({
     paddingBottom: 36,
     justifyContent: "space-between",
   },
+  content: {
+    backgroundColor: "transparent",
+  },
   title: {
     fontSize: 24,
     marginBottom: 20,
@@ -74,10 +70,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   button: {
-    backgroundColor: "#fff",
     padding: 12,
     borderRadius: 24,
-
     width: 160,
   },
   buttonText: {
@@ -86,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TopEvent;
+export default Event;

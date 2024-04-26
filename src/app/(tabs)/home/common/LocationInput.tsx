@@ -23,7 +23,6 @@ const LocationInput: FC<IProps> = ({ iconName, actionFunction }) => {
     (state: RootState) => state.locality
   );
 
-  //FIXME: передать функцию в props
   const handlePress = () => {
     actionFunction?.();
   };
@@ -53,11 +52,12 @@ const LocationInput: FC<IProps> = ({ iconName, actionFunction }) => {
   );
 };
 
+//FIXME: any
 const RenderPointText: any = ({ point, placeholder, focusInput }: any) => {
   const { colors } = useTheme();
   const textColor = point ? colors.text : colors.secondaryText;
 
-  //TODO: передаем параметры в компонент
+  //FIXME: any
   return (
     <Pressable
       onPress={() =>
