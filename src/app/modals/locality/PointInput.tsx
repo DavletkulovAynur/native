@@ -1,26 +1,27 @@
+import React, { FC, useEffect, useState } from "react";
+import { StyleSheet, TextInput } from "react-native";
 import { TPoint } from "@/app/store/slices/types";
 import { useTheme } from "@/app/theme";
-import { FC, useEffect, useState } from "react";
-import { StyleSheet, TextInput } from "react-native";
 
 interface IProps {
   point: TPoint | null;
   searchLocalities: (value: string) => void;
   setFocus: (value: string) => void;
-  inputData: any;
+  inputData: { Placeholder: string; Focus: string };
   focus: boolean;
 }
+
 const PointInput: FC<IProps> = ({
   point,
   searchLocalities,
   setFocus,
   inputData,
-  focus
+  focus,
 }) => {
   const [value, setValue] = useState(point?.name || "");
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
-  const handleDepartureChange = (value: string) => {
+  const handleChange = (value: string) => {
     searchLocalities(value);
     setValue(value);
   };
@@ -29,11 +30,11 @@ const PointInput: FC<IProps> = ({
     setValue(point?.name || "");
   }, [point]);
 
-  const handleOnBlur = () => {
+  const handleBlur = () => {
     setValue(point?.name || "");
   };
 
-  const handleOnFocus = () => {
+  const handleFocus = () => {
     searchLocalities("");
     setFocus(inputData.Focus);
   };
@@ -44,9 +45,9 @@ const PointInput: FC<IProps> = ({
       style={[styles.input, { color: colors.text }]}
       value={value}
       placeholder={inputData.Placeholder}
-      onChangeText={handleDepartureChange}
-      onBlur={handleOnBlur}
-      onFocus={handleOnFocus}
+      onChangeText={handleChange}
+      onBlur={handleBlur}
+      onFocus={handleFocus}
     />
   );
 };

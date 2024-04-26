@@ -9,7 +9,6 @@ import { RootState } from "../store/store";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "@/app/theme";
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
@@ -29,7 +28,6 @@ export default function TabLayout() {
   useEffect(() => {
     if (pointOfArrival) {
       navigation.goBack();
-      //FIXME:
       navigation.navigate("routes" as never);
     }
   }, [pointOfArrival]);
@@ -38,13 +36,10 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: colors.contrastText,
+        tabBarActiveTintColor: colors.text,
         tabBarStyle: {
           backgroundColor: colors.base,
         },
-        // tabBarBackgroundColor: colors.background,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
       }}
     >

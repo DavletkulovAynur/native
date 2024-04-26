@@ -6,7 +6,7 @@ import { useTheme } from "@/app/theme";
 
 import sp1 from "@assets/images/test/sp1.jpeg";
 import sp2 from "@assets/images/test/sp2.jpeg";
-import sp3 from "@assets/images/test/sp3.jpg";
+import sp3 from "@assets/images/test/sp3.jpeg";
 import sp4 from "@assets/images/test/sp4.jpg";
 import sp5 from "@assets/images/test/sp5.jpeg";
 
