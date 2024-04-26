@@ -1,15 +1,25 @@
 import { Text } from "@/components/Themed";
+import { router } from "expo-router";
 import React, { FC } from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Pressable } from "react-native";
 
 const TravelSpot: FC<any> = ({ item }) => {
   return (
-    <View style={styles.container}>
-      <Image source={item.cover} style={styles.background} />
-      <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
-        {item.title}
-      </Text>
-    </View>
+    <Pressable
+      onPress={() =>
+        router.push({
+          pathname: "/home/main/TravelSpots/[id]",
+          params: { id: item.id },
+        } as any)
+      }
+    >
+      <View style={styles.container}>
+        <Image source={item.cover} style={styles.background} />
+        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
+          {item.title}
+        </Text>
+      </View>
+    </Pressable>
   );
 };
 
