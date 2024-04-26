@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { View, Text } from "@/components/Themed";
 import { router, useLocalSearchParams } from "expo-router";
-import data from "./testData";
 import {
   ImageBackground,
   Pressable,
@@ -10,8 +9,10 @@ import {
 } from "react-native";
 import { useTheme } from "@/app/theme";
 import { FontAwesome } from "@expo/vector-icons";
+//TODO:
+import { data } from "./testData";
 
-const TravelSpotPage: FC = () => {
+const Page: FC = () => {
   const { colors } = useTheme();
   const { id } = useLocalSearchParams<{ id: string }>();
   const item = data.find((i) => i.id === id);
@@ -37,7 +38,7 @@ const TravelSpotPage: FC = () => {
   );
 };
 
-export default TravelSpotPage;
+export default Page;
 
 const styles = StyleSheet.create({
   bgContainer: {
@@ -52,15 +53,15 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     backgroundColor: "white",
-    width: 50, // Ширина контейнера
-    height: 50, // Высота контейнера
+    width: 50,
+    height: 50,
     marginTop: 60,
     marginLeft: 20,
     padding: 10,
     borderRadius: 25,
     overflow: "hidden",
-    display: "flex", // Установка контейнера в режим flex
-    justifyContent: "center", // Горизонтальное центрирование
-    alignItems: "center", // Вертикальное центрирование
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

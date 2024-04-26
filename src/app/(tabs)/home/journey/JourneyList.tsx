@@ -1,11 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Text, View } from "@/components/Themed";
-import TravelSpot from "./TravelSpot";
 import { useTheme } from "@/app/theme";
-import data from "./testData";
+import Journey from "./Journey";
+//TODO:
+import { data } from "./testData";
 
-const TravelSpots = () => {
+const JourneyList: FC = () => {
   const { colors } = useTheme();
 
   return (
@@ -18,16 +19,16 @@ const TravelSpots = () => {
       </View>
       <FlatList
         data={data}
-        renderItem={({ item }) => <TravelSpot item={item} />}
+        renderItem={({ item }) => <Journey item={item} />}
         keyExtractor={(item) => item.id}
-        horizontal={true} // Горизонтальный скролл
+        horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
     </View>
   );
 };
 
-export default TravelSpots;
+export default JourneyList;
 
 const styles = StyleSheet.create({
   container: {

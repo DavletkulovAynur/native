@@ -32,7 +32,6 @@ export default function TabLayout() {
     }
   }, [pointOfArrival]);
 
-  console.log("colorScheme", colorScheme);
   return (
     <Tabs
       screenOptions={{

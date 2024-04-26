@@ -2,13 +2,18 @@ import { Text } from "@/components/Themed";
 import { router } from "expo-router";
 import React, { FC } from "react";
 import { View, StyleSheet, Image, Pressable } from "react-native";
+import { TData } from "./testData";
 
-const TravelSpot: FC<any> = ({ item }) => {
+interface IProps {
+  item: TData;
+}
+const Journey: FC<IProps> = ({ item }) => {
   return (
+    //FIXME: any
     <Pressable
       onPress={() =>
         router.push({
-          pathname: "/home/main/TravelSpots/[id]",
+          pathname: "/home/journey/[id]",
           params: { id: item.id },
         } as any)
       }
@@ -23,11 +28,11 @@ const TravelSpot: FC<any> = ({ item }) => {
   );
 };
 
-export default TravelSpot;
+export default Journey;
 
 const styles = StyleSheet.create({
   container: {
-    width: 140, // Ширина контейнера
+    width: 140,
     margin: 10,
   },
   background: {

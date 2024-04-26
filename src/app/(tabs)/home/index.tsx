@@ -7,8 +7,8 @@ import {
 } from "react-native";
 import Main from "./main";
 import { useTheme } from "@/app/theme";
-import { TravelSpots } from "./main/TravelSpots";
-import { TopEvent } from "./main/TopEvent";
+import { Event } from "@/app/(tabs)/home/event";
+import { JourneyList } from "@/app/(tabs)/home/journey";
 import { View } from "@/components/Themed";
 
 const MainScreen = () => {
@@ -16,7 +16,7 @@ const MainScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => {
-    // Perform actual data refreshing operations here
+    //TODO:
     console.log("onRefresh");
   };
 
@@ -31,8 +31,8 @@ const MainScreen = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <TravelSpots />
-        <TopEvent />
+        <JourneyList />
+        <Event />
         <View style={styles.test} />
       </ScrollView>
     </SafeAreaView>
