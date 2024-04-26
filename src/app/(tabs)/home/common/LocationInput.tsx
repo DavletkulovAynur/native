@@ -32,7 +32,7 @@ const LocationInput: FC<IProps> = ({ iconName, actionFunction }) => {
     <View style={styles.container}>
       <Pressable onPress={handlePress}>
         <View style={styles.iconContainer}>
-          <FontAwesome name={iconName as any} size={24} color={colors.contrastText} />
+          <FontAwesome name={iconName as any} size={24} color={colors.text} />
         </View>
       </Pressable>
 

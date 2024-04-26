@@ -9,7 +9,7 @@ import { RouteItems } from "./routeComponents";
 import { router } from "expo-router";
 import { updatePointOfArrival } from "@/app/store/slices/localitySlice";
 
-const Routes: FC = () => {
+const RouteScreen: FC = () => {
   const dispatch = useDispatch();
   const { colors } = useTheme();
   const { pointOfArrival, pointOfDeparture } = useSelector(
@@ -24,30 +24,38 @@ const Routes: FC = () => {
   const dataOrderApi = OrderApi.useGetOrdersQuery(params);
 
   const goBackToMainPage = () => {
-    //FIXME: нужно просто вызывать функцию без передачи null
-    dispatch(updatePointOfArrival(null));
-    router.back();
+    if (pointOfArrival) {
+      dispatch(updatePointOfArrival(null));
+      router.back();
+    }
   };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.base }]}>
-      <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View
+        style={[styles.innerContainer, { backgroundColor: colors.background }]}
+      >
         <View style={[styles.form, { backgroundColor: colors.base }]}>
           <LocationInput
             iconName="chevron-left"
             actionFunction={goBackToMainPage}
           />
         </View>
-        <RouteItems dataOrderApi={dataOrderApi} />
+        {dataOrderApi.isLoading || dataOrderApi.isFetching ? null : (
+          <RouteItems dataOrderApi={dataOrderApi} />
+        )}
       </View>
     </SafeAreaView>
   );
 };
 
-export default Routes;
+export default RouteScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  innerContainer: {
     flex: 1,
   },
   form: {

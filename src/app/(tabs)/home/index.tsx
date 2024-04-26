@@ -11,12 +11,13 @@ import { TravelSpots } from "./main/TravelSpots";
 import { TopEvent } from "./main/TopEvent";
 import { View } from "@/components/Themed";
 
-export default function One() {
+const MainScreen = () => {
   const { colors } = useTheme();
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => {
-    console.log("super");
+    // Perform actual data refreshing operations here
+    console.log("onRefresh");
   };
 
   return (
@@ -32,11 +33,13 @@ export default function One() {
       >
         <TravelSpots />
         <TopEvent />
-        <View style={[styles.test]}></View>
+        <View style={styles.test} />
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
+
+export default MainScreen;
 
 const styles = StyleSheet.create({
   container: {

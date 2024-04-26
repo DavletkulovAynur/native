@@ -1,10 +1,9 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text } from "react-native";
-import Locality from "./Locality";
-import { View } from "@/components/Themed";
-import { FC } from "react";
+import React, { FC } from "react";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import { View, Text } from "@/components/Themed";
 import { TLocality } from "@/app/api/locality/types";
 import { useTheme } from "@/app/theme";
-
+import Locality from "./Locality";
 
 interface IProps {
   localities: TLocality[];
@@ -12,6 +11,7 @@ interface IProps {
   focus: string;
   isError: boolean;
 }
+
 const Localities: FC<IProps> = ({
   localities,
   isLoadingData,
@@ -22,8 +22,10 @@ const Localities: FC<IProps> = ({
 
   if (isError) {
     return (
-      <View style={styles.list}>
-        <Text>Failed to fetch data from server. Please try again later.</Text>
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorText}>
+          Failed to fetch data from server. Please try again later.
+        </Text>
       </View>
     );
   }
@@ -32,13 +34,13 @@ const Localities: FC<IProps> = ({
     <FlatList
       data={localities}
       renderItem={({ item }) => <Locality item={item} focus={focus} />}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id.toString()}
       style={[styles.list, { backgroundColor: colors.base }]}
       ListEmptyComponent={
         isLoadingData ? (
-          <ActivityIndicator animating={true} />
+          <ActivityIndicator size="large" color={colors.primary} />
         ) : (
-          <Text>Ничего не найдено</Text>
+          <Text style={styles.emptyText}>Nothing found</Text>
         )
       }
     />
@@ -53,5 +55,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 10,
     padding: 20,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  errorText: {
+    fontSize: 16,
+    textAlign: "center",
+  },
+  emptyText: {
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 20,
   },
 });
