@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Tabs, useRootNavigationState } from "expo-router";
+import { Tabs } from "expo-router";
 
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { useTheme } from "@/app/theme";
 import { router } from "expo-router";
+import useIsNavigationReady from "@/hooks/useIsNavigationReady";
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -19,19 +20,19 @@ export default function TabLayout() {
   const { colors } = useTheme();
   const isNavigationReady = useIsNavigationReady();
 
-  const { pointOfArrival } = useSelector((state: RootState) => state.locality);
+  const { pointOfDeparture, pointOfArrival } = useSelector(
+    (state: RootState) => state.locality
+  );
 
-  //FIXME:
   useEffect(() => {
-    if (pointOfArrival) {
-      if (isNavigationReady) {
-        router.back();
-        router.navigate({
-          pathname: "home/route",
-        } as any);
-      }
-    }
-  }, [pointOfArrival]);
+    if (!pointOfArrival) return;
+    if (!isNavigationReady) return;
+
+    router.back();
+    router.navigate({
+      pathname: "home/route",
+    } as any);
+  }, [pointOfArrival, pointOfDeparture]);
 
   return (
     <Tabs
@@ -62,9 +63,4 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-}
-
-function useIsNavigationReady() {
-  const rootNavigationState = useRootNavigationState();
-  return rootNavigationState?.key != null;
 }
