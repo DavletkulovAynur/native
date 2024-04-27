@@ -1,15 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { View, SafeAreaView, StyleSheet } from "react-native";
-import LocationInput from "./common";
+import LocationInput from "@/app/(tabs)/home/common/LocationInput";
 import { useTheme } from "@/app/theme";
 import { OrderApi } from "@/app/api";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/store/store";
-import { RouteItems } from "./routeComponents";
+import RouteItems from "./RouteItems";
 import { router } from "expo-router";
 import { updatePointOfArrival } from "@/app/store/slices/localitySlice";
 
-const RouteScreen: FC = () => {
+const Page: FC = () => {
   const dispatch = useDispatch();
   const { colors } = useTheme();
   const { pointOfArrival, pointOfDeparture } = useSelector(
@@ -21,11 +21,16 @@ const RouteScreen: FC = () => {
     destinationId: pointOfArrival?.id,
   };
 
+  useEffect(() => {
+    return () => {
+      dispatch(updatePointOfArrival(null));
+    };
+  }, []);
+
   const dataOrderApi = OrderApi.useGetOrdersQuery(params);
 
   const goBackToMainPage = () => {
     if (pointOfArrival) {
-      dispatch(updatePointOfArrival(null));
       router.back();
     }
   };
@@ -49,7 +54,7 @@ const RouteScreen: FC = () => {
   );
 };
 
-export default RouteScreen;
+export default Page;
 
 const styles = StyleSheet.create({
   container: {
