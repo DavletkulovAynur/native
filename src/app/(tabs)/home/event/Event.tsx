@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { ImageBackground, Pressable, StyleSheet } from "react-native";
-import PropTypes from "prop-types";
 import { Text, View } from "@/components/Themed";
 import { useTheme } from "@/app/theme";
 import eventImage from "@assets/images/test/event.jpeg";
@@ -30,12 +29,6 @@ const Event: FC = () => {
       </ImageBackground>
     </View>
   );
-};
-
-Event.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
