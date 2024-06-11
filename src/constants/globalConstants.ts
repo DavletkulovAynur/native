@@ -1,4 +1,4 @@
 export const CONSTANTS = {
-  devBaseUrl: "http://localhost:9000/api",
+  devBaseUrl: "https://api.yul-yort.ru/api",
   prodBaseUrl: "https://api.yul-yort.ru/api",
 };
